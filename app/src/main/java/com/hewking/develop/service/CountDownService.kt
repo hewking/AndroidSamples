@@ -17,6 +17,8 @@ class CountDownService : Service() {
     private var count = 10
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        Log.d(TAG,"onStartCommand")
+        Worker().start()
         return super.onStartCommand(intent, flags, startId)
     }
 
@@ -30,6 +32,7 @@ class CountDownService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
+        Log.d(TAG,"onDestroy")
     }
 
     private inner class Worker : Thread() {

@@ -16,6 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".service.CountDownService"
+            android:exported="false"
+            android:description="@string/app_name"/>
     </application>
 
 </manifest>
