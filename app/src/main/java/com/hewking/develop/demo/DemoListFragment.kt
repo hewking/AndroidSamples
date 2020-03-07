@@ -19,8 +19,8 @@ class DemoListFragment : Fragment() {
 
     private val datas = mutableListOf<Item>().also {
         var index = 1
-        it.add(Item(index++, "Service Demo", ServiceDemoFragment::class.java as Class<Any>))
-        it.add(Item(index++, "Service Demo", ServiceDemoFragment::class.java as Class<Any>))
+        it.add(Item(index++, "Service Demo", ServiceDemoFragment::class.java))
+        it.add(Item(index++, "Service Demo", ServiceDemoFragment::class.java))
 
     }
 
@@ -95,7 +95,7 @@ class DemoListFragment : Fragment() {
     data class Item(
         val id: Int,
         val name: String,
-        val clazz: Class<Any>
+        val clazz: Class<out Fragment>
     )
 
 }
