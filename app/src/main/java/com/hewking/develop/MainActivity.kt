@@ -8,15 +8,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
+import com.hewking.develop.demo.DemoListFragment
 import com.hewking.develop.service.CountDownService
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var binder : CountDownService.CountDownBinder?= null
+    private var binder: CountDownService.CountDownBinder? = null
     private var bound = false
 
-    private val connection = object : ServiceConnection{
+    private val connection = object : ServiceConnection {
         override fun onServiceDisconnected(name: ComponentName?) {
             bound = false
         }
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
             binder = service as CountDownService.CountDownBinder?
             bound = true
-            Log.d("MainActivity","count:${binder?.getService()?.getCount()}")
+            Log.d("MainActivity", "count:${binder?.getService()?.getCount()}")
         }
 
     }
@@ -32,20 +32,22 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        btn_start.setOnClickListener {
-            startService(Intent(this@MainActivity,CountDownService::class.java))
-        }
-
-        btn_bind.setOnClickListener {
-            Intent(this@MainActivity,CountDownService::class.java).also {
-                bindService(it,connection,Context.BIND_AUTO_CREATE)
-            }
-        }
+        supportFragmentManager.beginTransaction()
+            .add(R.id.frameLayout, DemoListFragment(), "DemoListFragment")
+            .commit()
 
     }
 
     override fun onStop() {
         super.onStop()
         unbindService(connection)
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            supportFragmentManager.popBackStack()
+        } else {
+            super.onBackPressed()
+        }
     }
 }
