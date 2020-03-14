@@ -20,8 +20,6 @@ class DemoListFragment : Fragment() {
     private val datas = mutableListOf<Item>().also {
         var index = 1
         it.add(Item(index++, "Service Demo", ServiceDemoFragment::class.java))
-        it.add(Item(index++, "Service Demo", ServiceDemoFragment::class.java))
-
     }
 
     override fun onCreateView(
@@ -77,7 +75,7 @@ class DemoListFragment : Fragment() {
                     holder.itemView.setOnClickListener {
                         Log.d("click","execute")
                         val transaction = activity!!.supportFragmentManager.beginTransaction()
-                        val fragment = datas[position].clazz.newInstance() as Fragment
+                        val fragment = datas[position].clazz.newInstance()
                         transaction.add(R.id.frameLayout,fragment,datas[position].name)
                         transaction.addToBackStack(datas[position].name)
                         transaction.commit()
