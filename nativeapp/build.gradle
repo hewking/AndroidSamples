@@ -13,8 +13,69 @@ android {
         versionCode 1
         versionName "1.0"
 
+        // This block is different from the one you use to link Gradle
+        // to your CMake or ndk-build script.
+        externalNativeBuild {
+
+            // For ndk-build, instead use the ndkBuild block.
+            cmake {
+
+                // Passes optional arguments to CMake.
+                arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang"
+
+                // Sets a flag to enable format macro constants for the C compiler.
+                cFlags "-D__STDC_FORMAT_MACROS"
+
+                // Sets optional flags for the C++ compiler.
+                cppFlags "-fexceptions", "-frtti"
+            }
+//            ndk {
+//             abiFilter 'armeabi-v7a','arm64-v8a'
+//            }
+        }
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    // Use this block to link Gradle to your CMake or ndk-build script.
+    externalNativeBuild {
+        cmake {
+            path 'CMakeLists.txt'
+        }
+    }
+
+//    flavorDimensions 'cpuArch'
+//    productFlavors {
+//        arm7 {
+//            dimension 'cpuArch'
+//            ndk {
+//                abiFilter 'armeabi-v7a'
+//            }
+//        }
+//        arm8 {
+//            dimension 'cpuArch'
+//            ndk {
+//                abiFilters 'arm64-v8a'
+//            }
+//        }
+//        x86 {
+//            dimension 'cpuArch'
+//            ndk {
+//                abiFilter 'x86'
+//            }
+//        }
+//        x86_64 {
+//            dimension 'cpuArch'
+//            ndk {
+//                abiFilter 'x86_64'
+//            }
+//        }
+//        universal {
+//            dimension 'cpuArch'
+//            // include all default ABIs. with NDK-r16,  it is:
+//            //   armeabi-v7a, arm64-v8a, x86, x86_64
+//        }
+//    }
 
     buildTypes {
         release {
