@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
+import android.view.LayoutInflater
+import com.hewking.develop.databinding.ActivityMainBinding
 import com.hewking.develop.demo.DemoListFragment
 import com.hewking.develop.service.CountDownService
 
@@ -31,10 +33,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
+        setContentView(binding.root)
         supportFragmentManager.beginTransaction()
             .add(R.id.frameLayout, DemoListFragment(), "DemoListFragment")
             .commit()
+
 
     }
 
