@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        unbindService(connection)
+//        unbindService(connection)
     }
 
     override fun onBackPressed() {

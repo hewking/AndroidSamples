@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hewking.develop">
+    package="com.hewking.client">
 
     <application
         android:allowBackup="true"
@@ -16,18 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service
-            android:name=".service.CountDownService"
-            android:exported="false"
-            android:description="@string/app_name"/>
-
-        <service android:name=".demo.aidl.MusicManager">
-            <intent-filter>
-                <action android:name="start_music_manager"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </service>
     </application>
 
 </manifest>
