@@ -18,9 +18,8 @@ class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
-
+        setContentView(binding.root)
         binding.btnStart.setOnClickListener {
             startService()
         }
@@ -30,7 +29,7 @@ class MainActivity : Activity() {
     private fun startService() {
         Log.d("client","startService")
         Intent().also {
-            it.setAction("start_music_manager")
+            it.action = "start_music_manager"
             it.setPackage("com.hewking.develop")
             bindService(it,connection, Context.BIND_AUTO_CREATE)
         }

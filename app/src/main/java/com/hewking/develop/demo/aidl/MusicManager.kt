@@ -19,7 +19,7 @@ class MusicManager : Service() {
 
     private inner class Stub : IMusicManager.Stub() {
         override fun getCount(): Int {
-           return 10
+           return 20
         }
 
     }

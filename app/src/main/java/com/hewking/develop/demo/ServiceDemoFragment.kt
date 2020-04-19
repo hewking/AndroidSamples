@@ -1,8 +1,12 @@
 package com.hewking.develop.demo
 
+import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
+import android.content.ServiceConnection
 import android.graphics.Color
 import android.os.Bundle
+import android.os.IBinder
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -29,11 +33,9 @@ class ServiceDemoFragment : Fragment() {
         val tv = Button(context).also {
             it.text = "开启MusicManager AIDL 服务"
             it.setOnClickListener {
-                Log.d("ServiceDemoFragment","startService")
-//                context!!.bindService(Intent(context,MusicManager::class.java))
             }
         }
-        layout.addView(tv,FrameLayout.LayoutParams(-1,-1).also {
+        layout.addView(tv,FrameLayout.LayoutParams(-2,-2).also {
             it.gravity = Gravity.CENTER
         })
         return layout
