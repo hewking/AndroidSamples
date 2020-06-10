@@ -1,5 +1,9 @@
 package com.hewking.develop.demo
 
+import android.content.res.ColorStateList
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.RippleDrawable
+import android.graphics.drawable.StateListDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -9,11 +13,16 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.graphics.toColorInt
 import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hewking.develop.R
+import com.hewking.develop.ktx.dp2px
 import kotlinx.android.synthetic.main.activity_main.view.*
 
 class DemoListFragment : Fragment() {
@@ -36,6 +45,7 @@ class DemoListFragment : Fragment() {
         )
         RecyclerView(context!!).also {
             it.layoutManager = LinearLayoutManager(context)
+            it.addItemDecoration(DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL))
             it.adapter = buildAdpater()
             parent.addView(it, FrameLayout.LayoutParams(-1, -1))
         }
@@ -52,10 +62,17 @@ class DemoListFragment : Fragment() {
                 viewType: Int
             ): RecyclerView.ViewHolder {
 
-                val itemView = LinearLayout(context).also {
+                val itemView = LinearLayout(context).also { it ->
                     it.layoutParams = (ViewGroup.LayoutParams(-1,-2))
+                    // TODO("添加ripple drawable metail 涟漪效果")
+                    it.background = RippleDrawable(ColorStateList.valueOf("#20000000".toColorInt()),
+                    StateListDrawable().apply {
+                        addState(intArrayOf(android.R.attr.state_pressed,android.R.attr.state_selected)
+                        ,ColorDrawable(ContextCompat.getColor(requireContext(),R.color.colorPrimary)))
+                    },null)
                     it.addView(TextView(context).also {
                         it.id = tvID
+                        it.setPadding(dp2px(16f).toInt())
                     },LinearLayout.LayoutParams(-1,-2).also {
                         it.gravity = Gravity.CENTER
                     })
