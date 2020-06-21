@@ -1,3 +1,4 @@
+include ':webview'
 include ':app',':nativeapp'
 rootProject.name='AndroidDeveloper'
 include ':nativeapp'
