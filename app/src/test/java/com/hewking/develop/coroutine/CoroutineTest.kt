@@ -1,9 +1,6 @@
 package com.hewking.develop.coroutine
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import org.junit.Test
 import java.io.ByteArrayOutputStream
 import java.net.HttpURLConnection
@@ -33,6 +30,7 @@ class CoroutineTest {
             println("fetch end" + Thread.currentThread().name)
             result
         }
+
         println("foo result : ${res}")
     }
 
