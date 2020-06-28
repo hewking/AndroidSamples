@@ -17,10 +17,10 @@ class RetrofitApiUnitTest {
             }
 
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                println(buildString {
-                    append("response:")
-                    append(response.body()?.string())
-                })
+//                println(buildString {
+//                    append("response:")
+//                    append(response.body()?.string())
+//                })
             }
 
         })

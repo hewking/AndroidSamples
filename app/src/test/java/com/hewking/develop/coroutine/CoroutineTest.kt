@@ -1,9 +1,6 @@
 package com.hewking.develop.coroutine
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import org.junit.Test
 import java.io.ByteArrayOutputStream
 import java.net.HttpURLConnection
@@ -27,21 +24,27 @@ class CoroutineTest {
     }
 
     suspend fun foo(){
-        withContext(Dispatchers.IO) {
+        val res = withContext(Dispatchers.IO) {
             println("fetch start" + Thread.currentThread().name)
-            fetchWeather()
+            val result = fetchWeather()
             println("fetch end" + Thread.currentThread().name)
+            result
         }
+
+        println("foo result : ${res}")
     }
 
-    fun fetchWeather(){
+    fun fetchWeather():String{
         val conn = URL("http://t.weather.sojson.com/api/weather/city/101030100").openConnection() as HttpURLConnection
         conn.connect()
         println(conn.responseCode)
         if (conn.responseCode == 200) {
+
             val result = conn.inputStream.bufferedReader().lines().parallel().collect(Collectors.joining(System.lineSeparator()))
-            print(result)
+//            print(result)
+        return result
         }
+        return "-1"
     }
 
 }
