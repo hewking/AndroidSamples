@@ -2,6 +2,7 @@ package com.hewking.develop.demo
 
 import android.os.Bundle
 import android.text.format.DateUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,11 +38,15 @@ class TestListFragment : Fragment() {
     }
 
     private fun initView() {
+        val datas = buildData()
+        Log.d("TestListFragment",datas.map { it.subtitle }.reduce { acc, data ->
+            acc + data
+        })
         binding.rvList.apply {
-            adapter = ListAdapter(buildData())
             addItemDecoration(DividerItemDecoration(requireContext(), RecyclerView.VERTICAL))
             itemAnimator = DefaultItemAnimator()
         }
+        binding.rvList.adapter = ListAdapter(datas)
 
     }
 

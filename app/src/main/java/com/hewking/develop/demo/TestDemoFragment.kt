@@ -43,6 +43,10 @@ class TestDemoFragment : Fragment() {
             iv_text.setTextColor(color)
         }
 
+        btn_change2.setOnClickListener {
+            ll_mask.showMask = true
+        }
+
         iv_text
     }
 
