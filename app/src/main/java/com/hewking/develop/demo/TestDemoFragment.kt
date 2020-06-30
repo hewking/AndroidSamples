@@ -16,12 +16,14 @@ import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.graphics.ColorUtils
 import androidx.fragment.app.Fragment
 import com.hewking.develop.R
 import com.hewking.develop.demo.aidl.MusicManager
 import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.test_fragment.*
 
-class ServiceDemoFragment : Fragment() {
+class TestDemoFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,18 +31,19 @@ class ServiceDemoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val layout = LinearLayout(context!!)
-        layout.setBackgroundColor(Color.WHITE)
-        val tv = Button(context).also {
-            it.text = "开启MusicManager AIDL 服务"
-            it.setOnClickListener {
-            }
-        }
-        layout.addView(tv,LinearLayout.LayoutParams(-2,-2).also {
-            it.gravity = Gravity.CENTER
-        })
+        return inflater.inflate(R.layout.test_fragment,container,false)
+    }
 
-        return layout
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        btn_change.setOnClickListener {
+
+            val color = ColorUtils.setAlphaComponent(iv_text.currentTextColor,0x80)
+            iv_text.setTextColor(color)
+        }
+
+        iv_text
     }
 
 }
