@@ -18,13 +18,13 @@ class DeferredTest {
     @Test
     fun test(){
         GlobalScope.launch {
-            val res = foo().await()
+            val res = foo()
             println("res:$res")
         }
-        Thread.sleep(4000L)
+        Thread.sleep(3000L)
     }
 
-    fun foo(): Deferred<String>{
+    suspend fun foo(): String{
         val deferred = CompletableDeferred<String>()
         thread {
             Thread.sleep(2000L)
@@ -35,7 +35,7 @@ class DeferredTest {
 //            }
             deferred.cancel()
         }
-        return deferred
+        return deferred.await()
     }
 
 }

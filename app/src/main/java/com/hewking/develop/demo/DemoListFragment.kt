@@ -30,6 +30,7 @@ class DemoListFragment : Fragment() {
     private val datas = mutableListOf<Item>().also {
         var index = 1
         it.add(Item(index++, "Service Demo", ServiceDemoFragment::class.java))
+        it.add(Item(index++, "Test Demo", TestDemoFragment::class.java))
     }
 
     override fun onCreateView(
