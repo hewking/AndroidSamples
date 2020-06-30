@@ -31,6 +31,7 @@ class DemoListFragment : Fragment() {
         var index = 1
         it.add(Item(index++, "Service Demo", ServiceDemoFragment::class.java))
         it.add(Item(index++, "Test Demo", TestDemoFragment::class.java))
+        it.add(Item(index++, "Test  List Demo", TestListFragment::class.java))
     }
 
     override fun onCreateView(
