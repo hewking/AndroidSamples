@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hewking.develop.R
 import com.hewking.develop.ktx.dp2px
+import com.hewking.develop.widget.MaskLinearLayout
 import kotlinx.android.synthetic.main.activity_main.view.*
 
 class DemoListFragment : Fragment() {
@@ -31,6 +32,7 @@ class DemoListFragment : Fragment() {
         var index = 1
         it.add(Item(index++, "Service Demo", ServiceDemoFragment::class.java))
         it.add(Item(index++, "Test Demo", TestDemoFragment::class.java))
+        it.add(Item(index++, "Test  List Demo", TestListFragment::class.java))
     }
 
     override fun onCreateView(
@@ -63,7 +65,7 @@ class DemoListFragment : Fragment() {
                 viewType: Int
             ): RecyclerView.ViewHolder {
 
-                val itemView = LinearLayout(context).also { it ->
+                val itemView = MaskLinearLayout(context!!,null).also { it ->
                     it.layoutParams = (ViewGroup.LayoutParams(-1,-2))
                     // TODO("添加ripple drawable metail 涟漪效果")
                     it.background = RippleDrawable(ColorStateList.valueOf("#20000000".toColorInt()),
