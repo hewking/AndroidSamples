@@ -38,8 +38,6 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .add(R.id.frameLayout, DemoListFragment(), "DemoListFragment")
             .commit()
-
-
     }
 
     override fun onStop() {
