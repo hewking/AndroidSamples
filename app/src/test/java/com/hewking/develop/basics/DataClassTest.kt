@@ -18,8 +18,10 @@ class DataClassTest {
 
         println("name: ${p.name?.length} age: ${p.age}")
 
+        // data class的解构赋值
         val (age) = p
 
+        // copy 函数只更改某一个值的时候
         val p2 = p.copy(name="hanhan")
 
         println("p2 :${p2}")
