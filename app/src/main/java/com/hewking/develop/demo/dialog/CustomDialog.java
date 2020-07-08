@@ -3,10 +3,14 @@ package com.hewking.develop.demo.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -209,7 +213,7 @@ public class CustomDialog extends Dialog {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             // instantiate the dialog with the custom Theme
-            final CustomDialog dialog = new CustomDialog(context);
+            final CustomDialog dialog = new CustomDialog(context, R.style.dl_base_common);
             dialog.setCancelable(mCancelable);
 //            dialog.setCanceledOnTouchOutside(canceledOutside);
             View layout = inflater.inflate(R.layout.dialog_common_base, null);
@@ -287,7 +291,7 @@ public class CustomDialog extends Dialog {
                 ((Button) layout.findViewById(R.id.cancel_btn))
                         .setText(cancel_btnText);
 
-                if(cancelTextColor!=-1){
+                if (cancelTextColor != -1) {
                     ((Button) layout.findViewById(R.id.cancel_btn)).setTextColor(cancelTextColor);
                 }
                 if (cancel_btnClickListener != null) {
@@ -334,5 +338,14 @@ public class CustomDialog extends Dialog {
             return dialog;
         }
 
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //设置window背景，默认的背景会有Padding值，不能全屏。当然不一定要是透明，你可以设置其他背景，替换默认的背景即可。
+//        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        //一定要在setContentView之后调用，否则无效
+//        getWindow().setLayout(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     }
 }

@@ -21,6 +21,8 @@ import androidx.fragment.app.Fragment
 import com.hewking.develop.R
 import com.hewking.develop.demo.aidl.MusicManager
 import com.hewking.develop.demo.dialog.CustomDialog
+import com.hewking.develop.ktx.toDp
+import com.hewking.develop.ktx.toDpi
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.test_fragment.*
 
@@ -52,7 +54,24 @@ class TestDemoFragment : Fragment() {
             CustomDialog.Builder(requireContext())
                 .setTitle("标题咋样")
                 .setMessage("消息里面的呢从有哪些呢搞起来")
-                .create()
+                .setPositiveButton("确定") { dialog, which ->
+                    dialog.dismiss()
+
+                }.setNegativeButton("取消",{
+                    dialog, which ->
+                    dialog.dismiss()
+                })
+
+                .create().apply {
+                    show()
+                    val params = window?.attributes
+                    params?.apply {
+//                        width = 270.toDpi()
+                    }
+
+                    println("dialog height:${params?.height} width:${params?.width}")
+//                    window?.setLayout(270.toDpi(),-2)
+                }
         }
 
         iv_text
