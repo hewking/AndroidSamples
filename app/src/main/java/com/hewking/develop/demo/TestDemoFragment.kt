@@ -20,6 +20,7 @@ import androidx.core.graphics.ColorUtils
 import androidx.fragment.app.Fragment
 import com.hewking.develop.R
 import com.hewking.develop.demo.aidl.MusicManager
+import com.hewking.develop.demo.dialog.CustomDialog
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.test_fragment.*
 
@@ -45,6 +46,13 @@ class TestDemoFragment : Fragment() {
 
         btn_change2.setOnClickListener {
             ll_mask.showMask = true
+        }
+
+        btn_show_dialog.setOnClickListener {
+            CustomDialog.Builder(requireContext())
+                .setTitle("标题咋样")
+                .setMessage("消息里面的呢从有哪些呢搞起来")
+                .create()
         }
 
         iv_text

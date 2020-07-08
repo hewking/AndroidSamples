@@ -40,6 +40,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+        <Button
+            android:id="@+id/btn_show_dialog"
+            android:text="show diaog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <com.hewking.develop.widget.MaskLinearLayout
             android:id="@+id/ll_mask"

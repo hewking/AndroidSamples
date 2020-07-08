@@ -21,4 +21,13 @@
         <item name="android:padding">@dimen/text_padding</item>
     </style>
 
+    <style name="dl_base_btn">
+        <item name="android:textSize">@dimen/sp_18</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <dimen name="sp_18">18sp</dimen>
 </resources>
