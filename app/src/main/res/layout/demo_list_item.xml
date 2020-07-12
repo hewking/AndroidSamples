@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/main_text_color"
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
@@ -20,7 +19,7 @@
         android:layout_below="@id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingVertical="0dp"
+        android:paddingTop="0dp"
         tools:text="今天真的好类啊"/>
 
     <TextView
@@ -29,6 +28,7 @@
         android:layout_alignParentEnd="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="@dimen/text_padding"
         tools:text="2020/6/30"/>
 
 </RelativeLayout>

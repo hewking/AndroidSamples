@@ -11,14 +11,20 @@
     <style name="MainText">
         <item name="android:textColor">@color/main_text_color</item>
         <item name="android:textSize">@dimen/main_text_size</item>
-        <item name="android:padding">@dimen/text_padding</item>
+        <item name="android:paddingLeft">@dimen/text_padding</item>
+        <item name="android:paddingRight">@dimen/text_padding</item>
+        <item name="android:paddingTop">@dimen/dp_08</item>
+        <item name="android:paddingBottom">@dimen/dp_08</item>
     </style>
 
 
     <style name="SecondaryText">
         <item name="android:textColor">@color/second_text_color</item>
         <item name="android:textSize">@dimen/second_text_size</item>
-        <item name="android:padding">@dimen/text_padding</item>
+        <item name="android:paddingLeft">@dimen/text_padding</item>
+        <item name="android:paddingRight">@dimen/text_padding</item>
+        <item name="android:paddingTop">@dimen/dp_08</item>
+        <item name="android:paddingBottom">@dimen/dp_08</item>
     </style>
 
     <style name="dl_base_btn">

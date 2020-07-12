@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#fff">
 
@@ -9,12 +10,14 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:title="好多数据呀"
+        app:navigationContentDescription="返回"
+        app:navigationIcon="@mipmap/ic_back"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_list"
-        android:background="@color/colorPrimaryDark"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>

@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hewking.develop.R
 import com.hewking.develop.databinding.TestListFragmentBinding
@@ -18,6 +19,10 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class TestListFragment : Fragment() {
+
+    companion object{
+        const val TAG: String = "TestListFragment"
+    }
 
     private lateinit var binding: TestListFragmentBinding
 
@@ -32,22 +37,26 @@ class TestListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        initToolbar()
         initView()
 
     }
 
+    private fun initToolbar() {
+        binding.toolbar.apply {
+
+        }
+    }
+
     private fun initView() {
         val datas = buildData()
-        Log.d("TestListFragment",datas.map { it.subtitle }.reduce { acc, data ->
-            acc + data
-        })
         binding.rvList.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
             addItemDecoration(DividerItemDecoration(requireContext(), RecyclerView.VERTICAL))
             itemAnimator = DefaultItemAnimator()
+            adapter = ListAdapter(datas)
         }
-        binding.rvList.adapter = ListAdapter(datas)
-
     }
 
     fun buildData(): List<Data> {
@@ -60,7 +69,7 @@ class TestListFragment : Fragment() {
         return datas
     }
 
-    class ListAdapter(val datas: List<Data>) : RecyclerView.Adapter<VH>() {
+    class ListAdapter(private val datas: List<Data>) : RecyclerView.Adapter<VH>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
             return VH(
                 LayoutInflater.from(parent.context)
