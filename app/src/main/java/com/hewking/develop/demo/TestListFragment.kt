@@ -9,13 +9,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.*
 import com.hewking.develop.R
 import com.hewking.develop.databinding.TestListFragmentBinding
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.DateFormat
@@ -64,7 +62,7 @@ class TestListFragment : Fragment() {
                 val datas = withContext(Dispatchers.IO) {
                     buildData()
                 }
-                adapter = ListAdapter(datas)
+                adapter = ConcatAdapter(ListAdapter(datas),LoadingAdapter())
             }
         }
     }
@@ -96,6 +94,23 @@ class TestListFragment : Fragment() {
         }
 
     }
+
+    class LoadingAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+            return LoadingViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_list_loading,
+            parent,false))
+        }
+
+        override fun getItemCount(): Int {
+            return 1
+        }
+
+        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        }
+
+    }
+
+    class LoadingViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
     class VH(view: View) : RecyclerView.ViewHolder(view) {
 
