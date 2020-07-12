@@ -68,11 +68,12 @@ class DemoListFragment : Fragment() {
                 val itemView = MaskLinearLayout(context!!,null).also { it ->
                     it.layoutParams = (ViewGroup.LayoutParams(-1,-2))
                     // TODO("添加ripple drawable metail 涟漪效果")
-                    it.background = RippleDrawable(ColorStateList.valueOf("#20000000".toColorInt()),
-                    StateListDrawable().apply {
-                        addState(intArrayOf(android.R.attr.state_pressed,android.R.attr.state_selected)
-                        ,ColorDrawable(ContextCompat.getColor(requireContext(),R.color.colorPrimary)))
-                    },null)
+//                    it.background = RippleDrawable(ColorStateList.valueOf("#20000000".toColorInt()),
+//                    StateListDrawable().apply {
+//                        addState(intArrayOf(android.R.attr.state_pressed,android.R.attr.state_selected)
+//                        ,ColorDrawable(ContextCompat.getColor(requireContext(),R.color.colorPrimary)))
+//                    },null)
+                    it.background = requireContext().getDrawable(android.R.drawable.list_selector_background)
                     it.addView(TextView(context).also {
                         it.id = tvID
                         it.setPadding(dp2px(16f).toInt())

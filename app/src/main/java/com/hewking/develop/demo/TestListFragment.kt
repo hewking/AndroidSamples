@@ -8,12 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hewking.develop.R
 import com.hewking.develop.databinding.TestListFragmentBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -44,27 +48,33 @@ class TestListFragment : Fragment() {
 
     private fun initToolbar() {
         binding.toolbar.apply {
-
+            setNavigationOnClickListener {
+                fragmentManager?.popBackStack()
+            }
         }
     }
 
     private fun initView() {
-        val datas = buildData()
         binding.rvList.apply {
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
             addItemDecoration(DividerItemDecoration(requireContext(), RecyclerView.VERTICAL))
             itemAnimator = DefaultItemAnimator()
-            adapter = ListAdapter(datas)
+            lifecycleScope.launch {
+                val datas = withContext(Dispatchers.IO) {
+                    buildData()
+                }
+                adapter = ListAdapter(datas)
+            }
         }
     }
 
-    fun buildData(): List<Data> {
+    suspend fun buildData(): List<Data> {
         val datas = mutableListOf<Data>()
         for (i in 0 until 20) {
             datas.add(Data(title = "太难了 ${i + 1}",
             subtitle = "咋整额，搞不定了好累",
-            time = SimpleDateFormat("yyyy-MM-DD hh").format(System.currentTimeMillis())))
+            time = SimpleDateFormat("yyyy-MM-dd hh").format(System.currentTimeMillis())))
         }
         return datas
     }
