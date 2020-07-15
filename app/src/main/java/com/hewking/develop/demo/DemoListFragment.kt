@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hewking.develop.R
+import com.hewking.develop.ktx.addOrShowFragment
 import com.hewking.develop.ktx.dp2px
 import com.hewking.develop.widget.MaskLinearLayout
 import kotlinx.android.synthetic.main.activity_main.view.*
@@ -41,12 +42,12 @@ class DemoListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         context ?: return null
-        val parent = FrameLayout(context!!)
+        val parent = FrameLayout(requireContext())
         parent.layoutParams = FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
         )
-        RecyclerView(context!!).also {
+        RecyclerView(requireContext()).also {
             it.layoutManager = LinearLayoutManager(context)
             it.addItemDecoration(DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL))
             it.adapter = buildAdpater()
@@ -101,6 +102,7 @@ class DemoListFragment : Fragment() {
                         transaction.add(R.id.frameLayout,fragment,datas[position].name)
                         transaction.addToBackStack(datas[position].name)
                         transaction.commit()
+//                        activity?.addOrShowFragment(R.id.frameLayout,fragment,datas[position].name)
                     }
                 }
             }
