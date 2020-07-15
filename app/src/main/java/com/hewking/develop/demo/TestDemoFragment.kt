@@ -19,6 +19,7 @@ import android.widget.TextView
 import androidx.core.graphics.ColorUtils
 import androidx.fragment.app.Fragment
 import com.hewking.develop.R
+import com.hewking.develop.databinding.TestFragmentBinding
 import com.hewking.develop.demo.aidl.MusicManager
 import com.hewking.develop.demo.dialog.CustomDialog
 import com.hewking.develop.ktx.toDp
@@ -28,29 +29,36 @@ import kotlinx.android.synthetic.main.test_fragment.*
 
 class TestDemoFragment : Fragment() {
 
+    private lateinit var binding: TestFragmentBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        return inflater.inflate(R.layout.test_fragment,container,false)
+        binding = TestFragmentBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btn_change.setOnClickListener {
+        binding.btnChange.setOnClickListener {
 
             val color = ColorUtils.setAlphaComponent(iv_text.currentTextColor,0x80)
             iv_text.setTextColor(color)
         }
 
-        btn_change2.setOnClickListener {
+        binding.btnChange2.setOnClickListener {
             ll_mask.showMask = true
         }
 
-        btn_show_dialog.setOnClickListener {
+        binding.listItem.run {
+            tvTitle.text = "小美女"
+            tvSubtitle.text = "家里了"
+        }
+
+        binding.btnShowDialog.setOnClickListener {
             CustomDialog.Builder(requireContext())
                 .setTitle("标题咋样")
                 .setMessage("消息里面的呢从有哪些呢搞起来")
@@ -74,7 +82,6 @@ class TestDemoFragment : Fragment() {
                 }
         }
 
-        iv_text
     }
 
 }
