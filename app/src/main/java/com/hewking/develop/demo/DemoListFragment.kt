@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hewking.develop.R
+import com.hewking.develop.demo.dialog.BottomItemsDialog
 import com.hewking.develop.ktx.addOrShowFragment
 import com.hewking.develop.ktx.dp2px
 import com.hewking.develop.widget.MaskLinearLayout

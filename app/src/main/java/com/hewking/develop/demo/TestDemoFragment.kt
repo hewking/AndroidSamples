@@ -21,7 +21,7 @@ import androidx.fragment.app.Fragment
 import com.hewking.develop.R
 import com.hewking.develop.databinding.TestFragmentBinding
 import com.hewking.develop.demo.aidl.MusicManager
-import com.hewking.develop.demo.dialog.CustomDialog
+import com.hewking.develop.demo.dialog.*
 import com.hewking.develop.ktx.toDp
 import com.hewking.develop.ktx.toDpi
 import kotlinx.android.synthetic.main.activity_main.view.*
@@ -80,6 +80,22 @@ class TestDemoFragment : Fragment() {
                     println("dialog height:${params?.height} width:${params?.width}")
 //                    window?.setLayout(270.toDpi(),-2)
                 }
+        }
+
+        binding.btnShowDialog2.setOnClickListener {
+            val dialog = BottomItemsDialog()
+            dialog.show(fragmentManager?:return@setOnClickListener,BottomItemsDialog::class.java.simpleName)
+
+//            val dialog = BottomItemsSheetDialog()
+//            dialog.show(childFragmentManager,"dialog")
+
+//            val dialog = BottomChoiceDialog(requireContext())
+//            dialog.show()
+        }
+
+        binding.btnShowDialog4.setOnClickListener {
+            val dialog = BottomDialogDemo(context)
+            dialog.show()
         }
 
     }

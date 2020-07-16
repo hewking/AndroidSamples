@@ -53,6 +53,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
+            <Button
+                android:id="@+id/btn_show_dialog2"
+                android:text="show diaog2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btn_show_dialog4"
+                android:text="show diaog2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
             <com.hewking.develop.widget.MaskLinearLayout
                 android:id="@+id/ll_mask"
                 android:layout_width="match_parent"
