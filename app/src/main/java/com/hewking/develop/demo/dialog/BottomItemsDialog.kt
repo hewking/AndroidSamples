@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.*
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.setPadding
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
@@ -30,17 +31,19 @@ class BottomItemsDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog =  super.onCreateDialog(savedInstanceState)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.window?.run {
+            setGravity(Gravity.BOTTOM)
+            setLayout(-1,-2)
+            setWindowAnimations(R.style.BottomDialog_Animation)
+        }
         return dialog
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(DialogFragment.STYLE_NO_FRAME,R.style.BottomDialog)
-        dialog?.setCanceledOnTouchOutside(true)
-        dialog?.window?.run {
-            setGravity(Gravity.BOTTOM)
-            setWindowAnimations(R.style.BottomDialog_Animation)
-        }
+
     }
 
     override fun onCreateView(
@@ -55,9 +58,14 @@ class BottomItemsDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.root.run {
-            val lp = layoutParams
-            lp.width = resources.displayMetrics.widthPixels
+            val lp = ViewGroup.LayoutParams(-1,-2)
             layoutParams = lp
+        }
+        binding.recyclerView.run {
+            val lp = layoutParams as ViewGroup.LayoutParams
+            lp.width = resources.displayMetrics.widthPixels
+            lp.height = (resources.displayMetrics.heightPixels * 0.8).toInt()
+            layoutParams
         }
         initView()
 
