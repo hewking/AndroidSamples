@@ -43,7 +43,6 @@ class BottomItemsDialog : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(DialogFragment.STYLE_NO_FRAME,R.style.BottomDialog)
-
     }
 
     override fun onCreateView(
@@ -57,10 +56,10 @@ class BottomItemsDialog : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.root.run {
-            val lp = ViewGroup.LayoutParams(-1,-2)
-            layoutParams = lp
-        }
+//        binding.root.run {
+//            val lp = ViewGroup.LayoutParams(-1,-2)
+//            layoutParams = lp
+//        }
         binding.recyclerView.run {
             val lp = layoutParams as ViewGroup.LayoutParams
             lp.width = resources.displayMetrics.widthPixels
@@ -79,6 +78,8 @@ class BottomItemsDialog : DialogFragment() {
             }
         }
     }
+
+
 
     class ItemViewHolder(private val binding: DemoListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 

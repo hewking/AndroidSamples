@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.core.view.setPadding
 import com.hewking.develop.demo.dialog.BottomChoiceDialog
 import com.hewking.develop.demo.dialog.BottomItemsDialog
+import com.hewking.develop.demo.dialog.BottomItemsSheetDialog
 import com.hewking.develop.demo.dialog.CustomDialog
 import com.hewking.develop.ktx.dp2px
 
@@ -20,6 +21,7 @@ import com.hewking.develop.ktx.dp2px
  * @author: jianhao
  * @create: 2020/7/17
  * @description: 一些dialog demo
+ * https://juejin.im/post/59c10f115188257e876a0d47 一些可以参考的文章
  */
 class TestDialogFragment : AppCompatDialogFragment(){
 
@@ -60,6 +62,9 @@ class TestDialogFragment : AppCompatDialogFragment(){
             "BottomItemsDialog" -> {
                 BottomItemsDialog().show(childFragmentManager,"dialog")
             }
+            "BottomItemsSheetDialog" -> {
+                BottomItemsSheetDialog().show(childFragmentManager,"dialog")
+            }
             "CustomDialog" -> {
                 val dialog = CustomDialog.Builder(requireContext()).setTitle("这是标题")
                     .setMessage("一夜回到解放前")
@@ -77,6 +82,7 @@ class TestDialogFragment : AppCompatDialogFragment(){
     private fun getItems(): List<String> {
         return listOf("BottomChoiceDialog",
         "BottomItemsDialog",
+            "BottomItemsSheetDialog",
         "CustomDialog")
     }
 

@@ -33,13 +33,6 @@ class BottomItemsSheetDialog() : BottomSheetDialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val window = dialog?.window
-        window?.run {
-            setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            val lp = attributes
-            lp.height = (resources.displayMetrics.heightPixels * 0.9).toInt()
-            attributes = lp
-        }
     }
 
     override fun onCreateView(
@@ -57,8 +50,24 @@ class BottomItemsSheetDialog() : BottomSheetDialogFragment() {
         initView()
     }
 
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+//        dialog.window?.run {
+////            setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//            val lp = attributes
+//            lp.height = (resources.displayMetrics.heightPixels * 0.9).toInt()
+//            attributes = lp
+//        }
+        return dialog
+    }
+
     private fun initView() {
+        binding.root.apply {
+
+        }
         binding.recyclerView.run {
+            val lp = layoutParams
+            lp.height = (resources.displayMetrics.heightPixels * 0.9f).toInt()
             layoutManager = GridLayoutManager(requireContext(), 3)
             lifecycleScope.launch {
                 adapter = ItemsAdapter(datas = buildData())
