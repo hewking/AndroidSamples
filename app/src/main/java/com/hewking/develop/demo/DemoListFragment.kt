@@ -27,15 +27,18 @@ import com.hewking.develop.ktx.addOrShowFragment
 import com.hewking.develop.ktx.dp2px
 import com.hewking.develop.widget.MaskLinearLayout
 import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.coroutines.internal.AtomicOp
+import java.util.concurrent.atomic.AtomicInteger
 
 class DemoListFragment : Fragment() {
 
     private val datas = mutableListOf<Item>().also {
-        var index = 1
-        it.add(Item(index++, "Service Demo", ServiceDemoFragment::class.java))
-        it.add(Item(index++, "Test Demo", TestDemoFragment::class.java))
-        it.add(Item(index++, "TestListFragment", TestListFragment::class.java))
-        it.add(Item(index++, "TestDialogFragment", TestDialogFragment::class.java))
+        val index = AtomicInteger(1)
+        it.add(Item(index.incrementAndGet(), "Service Demo", ServiceDemoFragment::class.java))
+        it.add(Item(index.incrementAndGet(), "Test Demo", TestDemoFragment::class.java))
+        it.add(Item(index.incrementAndGet(), "TestListFragment", TestListFragment::class.java))
+        it.add(Item(index.incrementAndGet(), "TestDialogFragment", TestDialogFragment::class.java))
+        it.add(Item(index.incrementAndGet(), "ResDemoFragment", ResDemoFragment::class.java))
     }
 
     override fun onCreateView(
