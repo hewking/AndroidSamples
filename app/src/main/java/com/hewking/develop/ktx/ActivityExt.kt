@@ -27,5 +27,6 @@ fun FragmentActivity.addOrShowFragment(
     } ?: kotlin.run {
         transition.add(containerId, fragment, tag)
     }
+    transition.addToBackStack(tag)
     transition.commitAllowingStateLoss()
 }

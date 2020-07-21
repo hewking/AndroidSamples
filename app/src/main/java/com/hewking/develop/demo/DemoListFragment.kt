@@ -99,12 +99,8 @@ class DemoListFragment : Fragment() {
                     it.text = datas[position].name
                     holder.itemView.setOnClickListener {
                         Log.d("click","execute")
-                        val transaction = activity!!.supportFragmentManager.beginTransaction()
                         val fragment = datas[position].clazz.newInstance()
-                        transaction.add(R.id.frameLayout,fragment,datas[position].name)
-                        transaction.addToBackStack(datas[position].name)
-                        transaction.commit()
-//                        activity?.addOrShowFragment(R.id.frameLayout,fragment,datas[position].name)
+                        activity?.addOrShowFragment(R.id.frameLayout,fragment,datas[position].name)
                     }
                 }
             }
