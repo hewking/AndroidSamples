@@ -23,6 +23,7 @@ import com.hewking.develop.demo.aidl.MusicManager
 import com.hewking.develop.demo.dialog.CustomDialog
 import com.hewking.develop.ktx.toDp
 import com.hewking.develop.ktx.toDpi
+import com.hewking.develop.util.load
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.test_fragment.*
 
@@ -74,7 +75,7 @@ class TestDemoFragment : Fragment() {
                 }
         }
 
-        iv_text
+        iv_gif.load(R.drawable.ic_select_box)
     }
 
 }
