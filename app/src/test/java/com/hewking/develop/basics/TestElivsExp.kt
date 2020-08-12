@@ -31,4 +31,14 @@ class TestElivsExp {
         println("heiheihei")
     }
 
+    class A {
+        var num = 0
+    }
+
+    @Test
+    fun bar(){
+        var a : A? = null
+        println(a?.num)
+    }
+
 }

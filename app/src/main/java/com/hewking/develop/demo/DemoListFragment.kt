@@ -39,6 +39,7 @@ class DemoListFragment : Fragment() {
         it.add(Item(index.incrementAndGet(), "TestListFragment", TestListFragment::class.java))
         it.add(Item(index.incrementAndGet(), "TestDialogFragment", TestDialogFragment::class.java))
         it.add(Item(index.incrementAndGet(), "ResDemoFragment", ResDemoFragment::class.java))
+        it.add(Item(index.incrementAndGet(), "CoroutineDemoFragment", CoroutineDemoFragment::class.java))
     }
 
     override fun onCreateView(
