@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hewking.develop.R
+import com.hewking.develop.ktx.addOrReplaceFragment
 import com.hewking.develop.ktx.dp2px
 import com.hewking.develop.widget.MaskLinearLayout
 import kotlinx.android.synthetic.main.activity_main.view.*
@@ -33,6 +34,7 @@ class DemoListFragment : Fragment() {
         it.add(Item(index++, "Service Demo", ServiceDemoFragment::class.java))
         it.add(Item(index++, "Test Demo", TestDemoFragment::class.java))
         it.add(Item(index++, "Test  List Demo", TestListFragment::class.java))
+        it.add(Item(index++, "Test Toolbar Demo", ToolbarFragment::class.java))
     }
 
     override fun onCreateView(
@@ -95,11 +97,13 @@ class DemoListFragment : Fragment() {
                     it.text = datas[position].name
                     holder.itemView.setOnClickListener {
                         Log.d("click","execute")
-                        val transaction = activity!!.supportFragmentManager.beginTransaction()
+//                        val transaction = activity!!.supportFragmentManager.beginTransaction()
                         val fragment = datas[position].clazz.newInstance()
-                        transaction.add(R.id.frameLayout,fragment,datas[position].name)
-                        transaction.addToBackStack(datas[position].name)
-                        transaction.commit()
+//                        transaction.add(R.id.frameLayout,fragment,datas[position].name)
+//                        transaction.addToBackStack(datas[position].name)
+//                        transaction.commit()
+                        addOrReplaceFragment("demolist",R.id.frameLayout,
+                            {fragment})
                     }
                 }
             }
