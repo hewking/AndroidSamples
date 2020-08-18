@@ -10,4 +10,6 @@
     <color name="standard_title_text_color_1">#333333</color>
     <color name="standard_title_text_color_2">#4A4A4A</color>
     <color name="standard_divider_color">#F5F5F5</color>
+    <color name="transparent">@android:color/transparent</color>
+    <color name="actionbar_opacity">#33000000</color>
 </resources>
