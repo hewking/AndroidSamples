@@ -20,7 +20,7 @@ public class TransparentToolbarManager {
 
     public TransparentToolbarManager(Toolbar mToolbar) {
         this.mToolbar = mToolbar;
-        this.colorDrawable = new ColorDrawable(mToolbar.getContext().getResources().getColor(R.color.colorPrimary));
+        this.colorDrawable = new ColorDrawable(mToolbar.getContext().getResources().getColor(R.color.white));
     }
 
     public TransparentToolbarManager(Toolbar mToolbar, ColorDrawable colorDrawable) {

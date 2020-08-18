@@ -3,10 +3,12 @@ package com.hewking.develop.demo
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.widget.SeekBar
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.hewking.develop.R
 import com.hewking.develop.base.BaseActivity
 import com.hewking.develop.util.TransparentToolbarManager
+import com.hewking.develop.widget.FloatFrameLayout
 import kotlinx.android.synthetic.main.fragment_toolbar.*
 
 /**
@@ -19,21 +21,45 @@ class ToolbarActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_toolbar)
-//        setSupportActionBar(toolbar)
-//        supportActionBar?.run {
-//            setDisplayShowTitleEnabled(false)
-//            setHomeButtonEnabled(true)
-//            setDisplayHomeAsUpEnabled(true)
-//        } ?: kotlin.run {
-//
-//        }
+        setSupportActionBar(toolbar)
+        supportActionBar?.run {
+            setDisplayShowTitleEnabled(false)
+            setHomeButtonEnabled(true)
+            setDisplayHomeAsUpEnabled(true)
+        } ?: kotlin.run {
+
+        }
 
 //        changeToolbar()
 //        toolbar.background.alpha = 0
-        webview.loadUrl("https://h5-mall-sit2.fcbox.com/index.html?show=detail#/index/20700188")
+//        webview.loadUrl("https://h5-mall-sit2.fcbox.com/index.html?show=detail#/index/20700188")
+//        webview.loadUrl("https://h5-mall-sit2.fcbox.com/index.html")
 
         val toolbarManager = TransparentToolbarManager(toolbar)
-        toolbarManager.setToolbarAlpha(0)
+
+        seekbar.max = 255
+
+        seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                toolbarManager.manageFadingToolbar(progress)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+            }
+
+        })
+
+        toolbarManager.manageFadingToolbar(0)
+        btn_change.setOnClickListener {
+            if (cl_root.layoutMode == FloatFrameLayout.LayoutMode.FloatReverse) {
+                cl_root.layoutMode = FloatFrameLayout.LayoutMode.Linear
+            } else {
+                cl_root.layoutMode = FloatFrameLayout.LayoutMode.FloatReverse
+            }
+        }
     }
 
     private fun changeToolbar() {
