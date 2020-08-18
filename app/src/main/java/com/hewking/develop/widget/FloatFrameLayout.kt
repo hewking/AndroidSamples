@@ -22,11 +22,13 @@ class FloatFrameLayout(val ctx: Context, attrs: AttributeSet) :
         set(value) {
             field = value
             requestLayout()
+            invalidate()
         }
 
     init {
         val typeArray = ctx.obtainStyledAttributes(attrs, R.styleable.FloatFrameLayout)
         typeArray.recycle()
+        isChildrenDrawingOrderEnabled = true
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -69,8 +71,8 @@ class FloatFrameLayout(val ctx: Context, attrs: AttributeSet) :
             val count = childCount
             for (i in count - 1 downTo 0) {
                 val child = getChildAt(i)
-                Log.d("child",child::class.java.simpleName)
-                child.layout(left,top,left + child.measuredWidth,top + child.measuredHeight)
+                Log.d("child", child::class.java.simpleName)
+                child.layout(left, top, left + child.measuredWidth, top + child.measuredHeight)
             }
 
 //            children.toMutableList().reversed().forEach {
@@ -92,6 +94,15 @@ class FloatFrameLayout(val ctx: Context, attrs: AttributeSet) :
         if (childCount > 2) {
             throw IllegalArgumentException("不能超过两个child View!")
         }
+    }
+
+    override fun getChildDrawingOrder(childCount: Int, drawingPosition: Int): Int {
+        Log.d("getChildDrawingOrder","childCount : $childCount pos: $drawingPosition")
+        if (layoutMode == LayoutMode.FloatReverse) {
+            return childCount - drawingPosition - 1
+        }
+        return super.getChildDrawingOrder(childCount, drawingPosition)
+
     }
 
     override fun generateDefaultLayoutParams(): LayoutParams {
