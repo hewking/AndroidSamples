@@ -10,13 +10,6 @@ import com.hewking.develop.databinding.TestFragmentBinding
 import com.hewking.develop.demo.dialog.BottomDialogDemo
 import com.hewking.develop.demo.dialog.BottomItemsDialog
 import com.hewking.develop.demo.dialog.CustomDialog
-<<<<<<< HEAD
-import com.hewking.develop.ktx.toDp
-import com.hewking.develop.ktx.toDpi
-import com.hewking.develop.util.load
-import kotlinx.android.synthetic.main.activity_main.view.*
-=======
->>>>>>> 6303699abfdeb045181590baee83435e0e69634d
 import kotlinx.android.synthetic.main.test_fragment.*
 
 class TestDemoFragment : Fragment() {
@@ -74,9 +67,7 @@ class TestDemoFragment : Fragment() {
                 }
         }
 
-<<<<<<< HEAD
-        iv_gif.load(R.drawable.ic_select_box)
-=======
+//        iv_gif.load(R.drawable.ic_select_box)
         binding.btnShowDialog2.setOnClickListener {
             val dialog = BottomItemsDialog()
             dialog.show(fragmentManager?:return@setOnClickListener,BottomItemsDialog::class.java.simpleName)
@@ -93,7 +84,6 @@ class TestDemoFragment : Fragment() {
             dialog.show()
         }
 
->>>>>>> 6303699abfdeb045181590baee83435e0e69634d
     }
 
 }

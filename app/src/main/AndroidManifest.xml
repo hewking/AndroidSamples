@@ -17,6 +17,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".demo.ToolbarActivity"/>
+
         <service
             android:name=".service.CountDownService"
             android:exported="false"
