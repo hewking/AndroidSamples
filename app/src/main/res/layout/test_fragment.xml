@@ -1,98 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="#ffffff">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/colorPrimary">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#ffffff">
 
-        <Button
-            android:id="@+id/btn_change"
-            android:text="change"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary">
 
-        <TextView
-            android:id="@+id/iv_text"
-            android:text="hello wrold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#ffffff"/>
+            <Button
+                android:id="@+id/btn_change"
+                android:text="change"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-        <ImageView
-            android:id="@+id/iv_gif"
-            android:layout_margin="@dimen/dp_20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/iv_text"
+                android:text="hello wrold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff" />
+
+            <include
+                android:id="@+id/list_item"
+                layout="@layout/demo_list_item"/>
+        </LinearLayout>
+
+
+        <com.hewking.develop.widget.MaskLinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:mask_drawable="@drawable/mask_dark">
+
+            <Button
+                android:id="@+id/btn_change2"
+                android:text="change"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btn_show_dialog"
+                android:text="show diaog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btn_show_dialog2"
+                android:text="show diaog2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btn_show_dialog4"
+                android:text="show diaog2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.hewking.develop.widget.MaskLinearLayout
+                android:id="@+id/ll_mask"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/colorPrimaryDark"
+                app:mask_drawable="@drawable/mask_dark">
+
+                <TextView
+                    android:id="@+id/iv_text3"
+                    android:text="hello wrold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:id="@+id/iv_text2"
+                    android:text="hello wrold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffffff" />
+            </com.hewking.develop.widget.MaskLinearLayout>
+
+            <com.hewking.develop.widget.MaskLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/colorPrimaryDark"
+                app:mask_drawable="@drawable/mask_dark">
+
+                <TextView
+                    android:id="@+id/iv_text4"
+                    android:text="hello wrold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:id="@+id/iv_text5"
+                    android:text="hello wrold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffffff" />
+            </com.hewking.develop.widget.MaskLinearLayout>
+
+        </com.hewking.develop.widget.MaskLinearLayout>
+
     </LinearLayout>
 
-
-    <com.hewking.develop.widget.MaskLinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        app:mask_drawable="@drawable/mask_dark">
-        <Button
-            android:id="@+id/btn_change2"
-            android:text="change"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <Button
-            android:id="@+id/btn_show_dialog"
-            android:text="show diaog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <com.hewking.develop.widget.MaskLinearLayout
-            android:id="@+id/ll_mask"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/colorPrimaryDark"
-            app:mask_drawable="@drawable/mask_dark">
-
-            <TextView
-                android:id="@+id/iv_text3"
-                android:text="hello wrold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#333333"/>
-            <TextView
-                android:id="@+id/iv_text2"
-                android:text="hello wrold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#ffffff"/>
-        </com.hewking.develop.widget.MaskLinearLayout>
-
-        <com.hewking.develop.widget.MaskLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/colorPrimaryDark"
-            app:mask_drawable="@drawable/mask_dark">
-
-            <TextView
-                android:id="@+id/iv_text4"
-                android:text="hello wrold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#333333"/>
-            <TextView
-                android:id="@+id/iv_text5"
-                android:text="hello wrold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#ffffff"/>
-        </com.hewking.develop.widget.MaskLinearLayout>
-
-    </com.hewking.develop.widget.MaskLinearLayout>
-
-</LinearLayout>
+</layout>

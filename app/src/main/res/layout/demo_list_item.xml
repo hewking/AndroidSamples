@@ -1,34 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/main_text_color"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <TextView
-        android:id="@+id/tv_title"
-        android:padding="@dimen/text_padding"
-        android:textSize="@dimen/main_text_size"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/MainText"
-        tools:text="好笑啊"/>
+        android:background="@android:drawable/list_selector_background">
 
-    <TextView
-        android:id="@+id/tv_subtitle"
-        style="@style/SecondaryText"
-        android:layout_below="@id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingVertical="0dp"
-        tools:text="今天真的好类啊"/>
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/MainText"
+            android:padding="@dimen/text_padding"
+            android:textSize="@dimen/main_text_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="好笑啊" />
 
-    <TextView
-        android:id="@+id/tv_time"
-        style="@style/SecondaryText"
-        android:layout_alignParentEnd="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="2020/6/30"/>
+        <TextView
+            android:id="@+id/tv_subtitle"
+            style="@style/SecondaryText"
+            android:layout_below="@id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="今天真的好类啊" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tv_time"
+            style="@style/SecondaryText"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/text_padding"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2020/6/30" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

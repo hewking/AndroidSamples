@@ -23,18 +23,24 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hewking.develop.R
 import com.hewking.develop.ktx.addOrReplaceFragment
+import com.hewking.develop.ktx.addOrShowFragment
 import com.hewking.develop.ktx.dp2px
 import com.hewking.develop.widget.MaskLinearLayout
 import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.coroutines.internal.AtomicOp
+import java.util.concurrent.atomic.AtomicInteger
 
 class DemoListFragment : Fragment() {
 
     private val datas = mutableListOf<Item>().also {
-        var index = 1
-        it.add(Item(index++, "Service Demo", ServiceDemoFragment::class.java))
-        it.add(Item(index++, "Test Demo", TestDemoFragment::class.java))
-        it.add(Item(index++, "Test  List Demo", TestListFragment::class.java))
-        it.add(Item(index++, "Test Toolbar Demo", ToolbarFragment::class.java))
+        val index = AtomicInteger(1)
+        it.add(Item(index.incrementAndGet(), "Service Demo", ServiceDemoFragment::class.java))
+        it.add(Item(index.incrementAndGet(), "Test Demo", TestDemoFragment::class.java))
+        it.add(Item(index.incrementAndGet(), "TestListFragment", TestListFragment::class.java))
+        it.add(Item(index.incrementAndGet(), "TestDialogFragment", TestDialogFragment::class.java))
+        it.add(Item(index.incrementAndGet(), "ResDemoFragment", ResDemoFragment::class.java))
+        it.add(Item(index.incrementAndGet(), "CoroutineDemoFragment", CoroutineDemoFragment::class.java))
+        it.add(Item(index.incrementAndGet(), "Test Toolbar Demo", ToolbarFragment::class.java))
     }
 
     override fun onCreateView(
@@ -43,12 +49,12 @@ class DemoListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         context ?: return null
-        val parent = FrameLayout(context!!)
+        val parent = FrameLayout(requireContext())
         parent.layoutParams = FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
         )
-        RecyclerView(context!!).also {
+        RecyclerView(requireContext()).also {
             it.layoutManager = LinearLayoutManager(context)
             it.addItemDecoration(DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL))
             it.adapter = buildAdpater()
@@ -70,11 +76,12 @@ class DemoListFragment : Fragment() {
                 val itemView = MaskLinearLayout(context!!,null).also { it ->
                     it.layoutParams = (ViewGroup.LayoutParams(-1,-2))
                     // TODO("添加ripple drawable metail 涟漪效果")
-                    it.background = RippleDrawable(ColorStateList.valueOf("#20000000".toColorInt()),
-                    StateListDrawable().apply {
-                        addState(intArrayOf(android.R.attr.state_pressed,android.R.attr.state_selected)
-                        ,ColorDrawable(ContextCompat.getColor(requireContext(),R.color.colorPrimary)))
-                    },null)
+//                    it.background = RippleDrawable(ColorStateList.valueOf("#20000000".toColorInt()),
+//                    StateListDrawable().apply {
+//                        addState(intArrayOf(android.R.attr.state_pressed,android.R.attr.state_selected)
+//                        ,ColorDrawable(ContextCompat.getColor(requireContext(),R.color.colorPrimary)))
+//                    },null)
+                    it.background = requireContext().getDrawable(android.R.drawable.list_selector_background)
                     it.addView(TextView(context).also {
                         it.id = tvID
                         it.setPadding(dp2px(16f).toInt())
@@ -97,13 +104,8 @@ class DemoListFragment : Fragment() {
                     it.text = datas[position].name
                     holder.itemView.setOnClickListener {
                         Log.d("click","execute")
-//                        val transaction = activity!!.supportFragmentManager.beginTransaction()
                         val fragment = datas[position].clazz.newInstance()
-//                        transaction.add(R.id.frameLayout,fragment,datas[position].name)
-//                        transaction.addToBackStack(datas[position].name)
-//                        transaction.commit()
-                        addOrReplaceFragment("demolist",R.id.frameLayout,
-                            {fragment})
+                        activity?.addOrShowFragment(R.id.frameLayout,fragment,datas[position].name)
                     }
                 }
             }

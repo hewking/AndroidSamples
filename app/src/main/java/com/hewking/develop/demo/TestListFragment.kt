@@ -8,16 +8,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.*
 import com.hewking.develop.R
 import com.hewking.develop.databinding.TestListFragmentBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
 class TestListFragment : Fragment() {
+
+    companion object{
+        const val TAG: String = "TestListFragment"
+    }
 
     private lateinit var binding: TestListFragmentBinding
 
@@ -32,35 +39,45 @@ class TestListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        initToolbar()
         initView()
 
     }
 
-    private fun initView() {
-        val datas = buildData()
-        Log.d("TestListFragment",datas.map { it.subtitle }.reduce { acc, data ->
-            acc + data
-        })
-        binding.rvList.apply {
-            addItemDecoration(DividerItemDecoration(requireContext(), RecyclerView.VERTICAL))
-            itemAnimator = DefaultItemAnimator()
+    private fun initToolbar() {
+        binding.toolbar.apply {
+            setNavigationOnClickListener {
+                fragmentManager?.popBackStack()
+            }
         }
-        binding.rvList.adapter = ListAdapter(datas)
-
     }
 
-    fun buildData(): List<Data> {
+    private fun initView() {
+        binding.rvList.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+            addItemDecoration(DividerItemDecoration(requireContext(), RecyclerView.VERTICAL))
+            itemAnimator = DefaultItemAnimator()
+            lifecycleScope.launch {
+                val datas = withContext(Dispatchers.IO) {
+                    buildData()
+                }
+                adapter = ConcatAdapter(ListAdapter(datas),LoadingAdapter())
+            }
+        }
+    }
+
+    suspend fun buildData(): List<Data> {
         val datas = mutableListOf<Data>()
         for (i in 0 until 20) {
             datas.add(Data(title = "太难了 ${i + 1}",
             subtitle = "咋整额，搞不定了好累",
-            time = SimpleDateFormat("yyyy-MM-DD hh").format(System.currentTimeMillis())))
+            time = SimpleDateFormat("yyyy-MM-dd hh").format(System.currentTimeMillis())))
         }
         return datas
     }
 
-    class ListAdapter(val datas: List<Data>) : RecyclerView.Adapter<VH>() {
+    class ListAdapter(private val datas: List<Data>) : RecyclerView.Adapter<VH>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
             return VH(
                 LayoutInflater.from(parent.context)
@@ -77,6 +94,23 @@ class TestListFragment : Fragment() {
         }
 
     }
+
+    class LoadingAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+            return LoadingViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_list_loading,
+            parent,false))
+        }
+
+        override fun getItemCount(): Int {
+            return 1
+        }
+
+        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        }
+
+    }
+
+    class LoadingViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
     class VH(view: View) : RecyclerView.ViewHolder(view) {
 
