@@ -22,7 +22,7 @@ class FloatFrameLayout(val ctx: Context, attrs: AttributeSet) :
         set(value) {
             field = value
             requestLayout()
-            invalidate()
+//            invalidate()
         }
 
     init {
@@ -44,7 +44,7 @@ class FloatFrameLayout(val ctx: Context, attrs: AttributeSet) :
         }
 
         if (hMode != MeasureSpec.EXACTLY) {
-            if (layoutMode == LayoutMode.Float) {
+            if (layoutMode == LayoutMode.Float || layoutMode == LayoutMode.FloatReverse) {
                 hSize = children.map { it.measuredHeight }.reduce { acc, i -> max(acc, i) }
             } else {
                 hSize = children.map { it.measuredHeight }.reduce { acc, i -> acc + i }
@@ -68,16 +68,9 @@ class FloatFrameLayout(val ctx: Context, attrs: AttributeSet) :
                 it.layout(left, top, left + it.measuredWidth, top + it.measuredHeight)
             }
         } else {
-            val count = childCount
-            for (i in count - 1 downTo 0) {
-                val child = getChildAt(i)
-                Log.d("child", child::class.java.simpleName)
-                child.layout(left, top, left + child.measuredWidth, top + child.measuredHeight)
+            children.toMutableList().reversed().forEach {
+                it.layout(left, top, left + it.measuredWidth, top + it.measuredHeight)
             }
-
-//            children.toMutableList().reversed().forEach {
-//                it.layout(left, top, left + it.measuredWidth, top + it.measuredHeight)
-//            }
         }
     }
 

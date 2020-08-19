@@ -21,6 +21,8 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:name=".demo.ToolbarActivity"/>
 
+        <activity android:name=".demo.WebViewActivity"/>
+
         <service
             android:name=".service.CountDownService"
             android:exported="false"

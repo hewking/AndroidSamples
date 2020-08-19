@@ -89,6 +89,16 @@ dependencies {
     // coil
     implementation("io.coil-kt:coil:0.11.0")
 
+    // immserive status bar
+    implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+
+    // 基础依赖包，必须要依赖
+    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
+    // fragment快速实现（可选）
+    implementation 'com.gyf.immersionbar:immersionbar-components:3.0.0'
+    // kotlin扩展（可选）
+    implementation 'com.gyf.immersionbar:immersionbar-ktx:3.0.0'
+
     // doraemonkit
     debugImplementation "com.didichuxing.doraemonkit:doraemonkit:3.2.0"
     releaseImplementation "com.didichuxing.doraemonkit:doraemonkit-no-op:3.2.0"

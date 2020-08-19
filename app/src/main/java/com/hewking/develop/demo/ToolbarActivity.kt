@@ -1,12 +1,16 @@
 package com.hewking.develop.demo
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.SeekBar
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.gyf.immersionbar.ImmersionBar
 import com.hewking.develop.R
 import com.hewking.develop.base.BaseActivity
+import com.hewking.develop.util.StateBarUtils
+import com.hewking.develop.util.StatusBarManager
 import com.hewking.develop.util.TransparentToolbarManager
 import com.hewking.develop.widget.FloatFrameLayout
 import kotlinx.android.synthetic.main.fragment_toolbar.*
@@ -60,6 +64,12 @@ class ToolbarActivity : BaseActivity() {
                 cl_root.layoutMode = FloatFrameLayout.LayoutMode.FloatReverse
             }
         }
+
+        StatusBarManager(this).create(false)
+        StateBarUtils.paddingTopStateBarHeight(this,toolbar)
+//        ImmersionBar.with(this).statusBarColorInt(Color.TRANSPARENT)
+//            .fitsSystemWindows(true)
+//            .init()
     }
 
     private fun changeToolbar() {
@@ -88,6 +98,10 @@ class ToolbarActivity : BaseActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun isImmersive(): Boolean {
+        return true
     }
 
 }

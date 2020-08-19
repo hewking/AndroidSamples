@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import com.hewking.develop.R
 
@@ -23,15 +24,26 @@ class ToolbarFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return FrameLayout(requireContext()).apply {
-            layoutParams = ViewGroup.LayoutParams(-1,-1)
+        return LinearLayout(requireContext()).apply {
+            orientation = LinearLayout.VERTICAL
+            layoutParams = LinearLayout.LayoutParams(-1,-1).apply {
+                gravity = Gravity.CENTER
+            }
             addView(Button(requireContext()).apply {
-                layoutParams = FrameLayout.LayoutParams(-2,-2).apply {
+                layoutParams = LinearLayout.LayoutParams(-2,-2).apply {
                     gravity = Gravity.CENTER
                 }
                 text = "test toolbar"
                 setOnClickListener {
                     startActivity(Intent(requireContext(),ToolbarActivity::class.java))
+                }
+            })
+
+            addView(Button(requireContext()).apply {
+                layoutParams = LinearLayout.LayoutParams(-2,-2)
+                text = "test toolbar immersive"
+                setOnClickListener {
+                    startActivity(Intent(requireContext(),WebViewActivity::class.java))
                 }
             })
         }
