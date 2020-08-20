@@ -29,7 +29,7 @@ class ToolbarActivity : BaseActivity() {
         supportActionBar?.run {
             setDisplayShowTitleEnabled(false)
             setHomeButtonEnabled(true)
-            setDisplayHomeAsUpEnabled(true)
+            setDisplayHomeAsUpEnabled(false)
         } ?: kotlin.run {
 
         }

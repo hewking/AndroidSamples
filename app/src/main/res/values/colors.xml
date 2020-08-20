@@ -12,4 +12,5 @@
     <color name="standard_divider_color">#F5F5F5</color>
     <color name="transparent">@android:color/transparent</color>
     <color name="actionbar_opacity">#33000000</color>
+    <color name="blue_1">#00BCD4</color>
 </resources>
