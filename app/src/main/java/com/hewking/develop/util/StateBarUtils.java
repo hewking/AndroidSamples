@@ -20,20 +20,8 @@ public class StateBarUtils {
     public static void topMarginStateBarHeight(Context context, View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-            if (layoutParams instanceof LinearLayout.LayoutParams) {
+            if (layoutParams instanceof ViewGroup.MarginLayoutParams) {
                 LinearLayout.LayoutParams params = ((LinearLayout.LayoutParams) layoutParams);
-                params.topMargin += DensityUtil.getStatusBarHeight(context);
-                view.setLayoutParams(params);
-            } else if (layoutParams instanceof RelativeLayout.LayoutParams) {
-                RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams) layoutParams);
-                params.topMargin += DensityUtil.getStatusBarHeight(context);
-                view.setLayoutParams(params);
-            } else if (layoutParams instanceof FrameLayout.LayoutParams) {
-                FrameLayout.LayoutParams params = ((FrameLayout.LayoutParams) layoutParams);
-                params.topMargin += DensityUtil.getStatusBarHeight(context);
-                view.setLayoutParams(params);
-            } else if (layoutParams instanceof ConstraintLayout.LayoutParams) {
-                ConstraintLayout.LayoutParams params = ((ConstraintLayout.LayoutParams) layoutParams);
                 params.topMargin += DensityUtil.getStatusBarHeight(context);
                 view.setLayoutParams(params);
             }
@@ -48,26 +36,11 @@ public class StateBarUtils {
                     view.getPaddingBottom());
 
             ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-            if (layoutParams.height == ViewGroup.LayoutParams.WRAP_CONTENT|| layoutParams.height == ViewGroup.LayoutParams.MATCH_PARENT) {
+            if (layoutParams.height == ViewGroup.LayoutParams.WRAP_CONTENT || layoutParams.height == ViewGroup.LayoutParams.MATCH_PARENT) {
                 return;
             }
-            if (layoutParams instanceof LinearLayout.LayoutParams) {
-                LinearLayout.LayoutParams params = ((LinearLayout.LayoutParams) layoutParams);
-                params.height += DensityUtil.getStatusBarHeight(context);
-                view.setLayoutParams(params);
-            } else if (layoutParams instanceof RelativeLayout.LayoutParams) {
-                RelativeLayout.LayoutParams params = ((RelativeLayout.LayoutParams) layoutParams);
-                params.height += DensityUtil.getStatusBarHeight(context);
-                view.setLayoutParams(params);
-            } else if (layoutParams instanceof FrameLayout.LayoutParams) {
-                FrameLayout.LayoutParams params = ((FrameLayout.LayoutParams) layoutParams);
-                params.height += DensityUtil.getStatusBarHeight(context);
-                view.setLayoutParams(params);
-            } else if (layoutParams instanceof ConstraintLayout.LayoutParams) {
-                ConstraintLayout.LayoutParams params = ((ConstraintLayout.LayoutParams) layoutParams);
-                params.height += DensityUtil.getStatusBarHeight(context);
-                view.setLayoutParams(params);
-            }
+            layoutParams.height += DensityUtil.getStatusBarHeight(context);
+            view.setLayoutParams(layoutParams);
         }
     }
 
