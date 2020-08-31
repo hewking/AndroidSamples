@@ -5,10 +5,14 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.core.view.children
 import com.hewking.develop.R
+import com.hewking.utils.L
 import java.lang.IllegalArgumentException
 import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.sign
 
 /**
  * @author: jianhao
@@ -37,7 +41,31 @@ class FloatFrameLayout(val ctx: Context, attrs: AttributeSet) :
         var wSize = MeasureSpec.getSize(widthMeasureSpec)
         var hSize = MeasureSpec.getSize(heightMeasureSpec)
 
-        measureChildren(widthMeasureSpec, heightMeasureSpec)
+//        measureChildren(widthMeasureSpec, heightMeasureSpec)
+
+        var totalHeight = 0
+        for (i in 0 until childCount) {
+            val child = getChildAt(i)
+//            if (child.visibility != View.GONE) {
+            val lp = child.layoutParams as LinearLayout.LayoutParams
+            val weight = lp.weight
+            Log.d("FloatFrameLayout", "weight:$weight hSize:$hSize")
+            val useExcessSpace = weight > 0f && lp.height == 0
+            var spec = heightMeasureSpec
+            if (useExcessSpace && hMode == MeasureSpec.EXACTLY) {
+                spec = MeasureSpec.makeMeasureSpec(hSize - totalHeight, MeasureSpec.EXACTLY)
+                Log.d("FloatFrameLayout", "specH: ${MeasureSpec.getSize(spec)}")
+                if (layoutMode != LayoutMode.Linear) {
+                    child.measure(widthMeasureSpec, heightMeasureSpec)
+                } else {
+                    child.measure(widthMeasureSpec, spec)
+                }
+            } else {
+                measureChild(child, widthMeasureSpec, heightMeasureSpec)
+            }
+            totalHeight += child.measuredHeight
+//            }
+        }
 
         if (wMode != MeasureSpec.EXACTLY) {
             wSize = children.map { it.measuredWidth }.reduce { acc, i -> max(acc, i) }
@@ -77,7 +105,9 @@ class FloatFrameLayout(val ctx: Context, attrs: AttributeSet) :
     private fun layoutLinear(left: Int, top: Int, right: Int, bottom: Int) {
         var childTop = top
         children.forEach {
+//            val childBottom = min(childTop + it.measuredHeight, measuredHeight)
             it.layout(left, childTop, left + it.measuredWidth, childTop + it.measuredHeight)
+            Log.d("FloatFrameLayout", "childBottom:${childTop + it.measuredHeight}")
             childTop += it.measuredHeight
         }
     }
@@ -90,7 +120,7 @@ class FloatFrameLayout(val ctx: Context, attrs: AttributeSet) :
     }
 
     override fun getChildDrawingOrder(childCount: Int, drawingPosition: Int): Int {
-        Log.d("getChildDrawingOrder","childCount : $childCount pos: $drawingPosition")
+        Log.d("getChildDrawingOrder", "childCount : $childCount pos: $drawingPosition")
         if (layoutMode == LayoutMode.FloatReverse) {
             return childCount - drawingPosition - 1
         }
@@ -98,8 +128,8 @@ class FloatFrameLayout(val ctx: Context, attrs: AttributeSet) :
 
     }
 
-    override fun generateDefaultLayoutParams(): LayoutParams {
-        return super.generateDefaultLayoutParams()
+    override fun generateLayoutParams(attrs: AttributeSet?): ViewGroup.LayoutParams {
+        return LinearLayout.LayoutParams(context, attrs)
     }
 
     enum class LayoutMode {
