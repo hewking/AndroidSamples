@@ -83,6 +83,8 @@ class ToolbarActivity : BaseActivity() {
                 m1.gradient(progress)
                 m2.gradient(progress)
 
+                tv_title.alpha = progress.div(255f)
+
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {

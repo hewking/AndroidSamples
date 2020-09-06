@@ -30,6 +30,7 @@
                 android:background="@drawable/shape_toolbar_left" />
 
             <TextView
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
