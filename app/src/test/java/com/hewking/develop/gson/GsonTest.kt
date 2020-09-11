@@ -28,6 +28,12 @@ class GsonTest {
         println(map)
     }
 
+    @Test
+    fun foo(){
+        val map = mapOf<String,String>("name" to "tom","age" to "12")
+        println(gson.fromJson(gson.toJson(map),Map::class.java))
+    }
+
     class Person {
         var name = "heihei"
         var age = 13
