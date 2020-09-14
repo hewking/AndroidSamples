@@ -5,6 +5,8 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.didi.dokit'
 
+//configBaseProject getProject()
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
