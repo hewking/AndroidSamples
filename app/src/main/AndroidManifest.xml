@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hewking.develop">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,6 +26,10 @@
             android:name=".demo.ToolbarActivity"/>
 
         <activity android:name=".demo.WebViewActivity"/>
+
+        <activity android:name=".demo.CompatAndroidQActivity"/>
+
+        <activity android:name=".demo.BrowseAlbumActivity"/>
 
         <service
             android:name=".service.CountDownService"
