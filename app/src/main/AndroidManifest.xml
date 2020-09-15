@@ -5,9 +5,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"
-        android:maxSdkVersion="28"/>
-
+    <uses-permission
+        android:name="android.permission.READ_PHONE_STATE"
+        android:maxSdkVersion="28" />
 
     <application
         android:allowBackup="true"
@@ -16,6 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:label="FileCompatActivity"
+            android:name=".demo.FileCompatActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,26 +26,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:theme="@style/AppTheme.NoActionBar"
-            android:name=".demo.ToolbarActivity"/>
-
-        <activity android:name=".demo.WebViewActivity"/>
-
-        <activity android:name=".demo.CompatAndroidQActivity"/>
-
-        <activity android:name=".demo.BrowseAlbumActivity"/>
+            android:name=".demo.ToolbarActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".demo.WebViewActivity" />
+        <activity
+            android:name=".demo.CompatAndroidQActivity"
+            android:label="CompatAndroidQActivity" />
+        <activity android:name=".demo.BrowseAlbumActivity" />
 
         <service
             android:name=".service.CountDownService"
-            android:exported="false"
-            android:description="@string/app_name"/>
-
+            android:description="@string/app_name"
+            android:exported="false" />
         <service android:name=".demo.aidl.MusicManager">
             <intent-filter>
-                <action android:name="start_music_manager"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="start_music_manager" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>
     </application>

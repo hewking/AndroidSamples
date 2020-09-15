@@ -89,7 +89,11 @@ class CompatAndroidQActivity : AppCompatActivity() {
         btnGetIMEI.setOnClickListener {
             val androidId = getIMEI()
             toast("androidID:$androidId")
-            Logger.debug("androidID", "test","androidID:$androidId")
+            Logger.debug("androidID", "test", "androidID:$androidId")
+        }
+
+        testFileApi.setOnClickListener {
+            startActivity(Intent(this@CompatAndroidQActivity, FileCompatActivity::class.java))
         }
 
     }

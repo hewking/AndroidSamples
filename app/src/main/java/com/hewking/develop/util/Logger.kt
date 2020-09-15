@@ -3,7 +3,7 @@ package com.hewking.develop.util
 import android.util.Log
 
 /**
- * @Description: (用一句话描述该文件做什么)
+ * @Description: 对log的简单封装
  * @Author: jianhao
  * @Date:   2020/9/15 10:39
  * @License: Copyright Since 2020 Hive Box Technology. All rights reserved.

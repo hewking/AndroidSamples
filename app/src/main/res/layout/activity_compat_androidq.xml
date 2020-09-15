@@ -38,4 +38,10 @@
         android:layout_height="wrap_content"
         android:text="获取IMEI"/>
 
+    <Button
+        android:id="@+id/testFileApi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Test File Api"/>
+
 </LinearLayout>
