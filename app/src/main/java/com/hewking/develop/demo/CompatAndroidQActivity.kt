@@ -22,6 +22,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.hewking.develop.R
+import com.hewking.develop.util.Logger
+import com.hewking.develop.util.toast
 import kotlinx.android.synthetic.main.activity_compat_androidq.*
 import java.io.BufferedInputStream
 import java.io.BufferedOutputStream
@@ -86,9 +88,8 @@ class CompatAndroidQActivity : AppCompatActivity() {
 
         btnGetIMEI.setOnClickListener {
             val androidId = getIMEI()
-            Toast.makeText(this@CompatAndroidQActivity, "androidID:$androidId", Toast.LENGTH_SHORT)
-                .show()
-            Log.d("androidID", "androidID:$androidId")
+            toast("androidID:$androidId")
+            Logger.debug("androidID", "test","androidID:$androidId")
         }
 
     }
