@@ -15,17 +15,17 @@
         android:text="getFileDir" />
 
     <Button
-        android:id="@+id/getCacheDir"
+        android:id="@+id/btnSaveImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
-        android:text="getCacheDir" />
+        android:text="Save Image" />
 
     <Button
-        android:id="@+id/getExternalStorageDirectory"
+        android:id="@+id/btnPickFile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
-        android:text="getExternalStorageDirectory" />
+        android:text="pickFile SAF" />
 
 </LinearLayout>
