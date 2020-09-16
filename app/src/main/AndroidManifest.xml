@@ -3,6 +3,12 @@
     package="com.hewking.develop">
 
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.READ_PHONE_STATE"
+        android:maxSdkVersion="28" />
 
     <application
         android:allowBackup="true"
@@ -10,12 +16,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".demo.ImmersiveDemoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_immersive_demo"
             android:theme="@style/FullscreenTheme"></activity>
+        <activity
+            android:label="FileCompatActivity"
+            android:name=".demo.FileCompatActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +37,11 @@
             android:name=".demo.ToolbarActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".demo.WebViewActivity" />
+
+        <activity
+            android:name=".demo.CompatAndroidQActivity"
+            android:label="CompatAndroidQActivity" />
+        <activity android:name=".demo.BrowseAlbumActivity" />
 
         <service
             android:name=".service.CountDownService"

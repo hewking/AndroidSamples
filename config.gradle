@@ -1,0 +1,33 @@
+ext {
+    androidConfig = [
+            compileSdk: 29,
+            targetSdk : 29,
+            buildTools: "29.0.3"
+    ]
+
+}
+
+def configBaseProject(Project project) {
+    println("----------- config main project ---------${project.name}")
+    configBaseVersion(project)
+}
+
+def configBaseLib(Project project) {
+    println("----------- config library project ---------${project.name}")
+    configBaseVersion(project)
+}
+
+def configBuildType(Project pro) {
+
+}
+
+def configBaseVersion(Project pro) {
+    pro.android {
+        compileSdkVersion androidConfig.compileSdk
+        buildToolsVersion androidConfig.buildTools
+        defaultConfig {
+            minSdkVersion androidConfig.minSdk
+            targetSdkVersion androidConfig.targetSdk
+        }
+    }
+}

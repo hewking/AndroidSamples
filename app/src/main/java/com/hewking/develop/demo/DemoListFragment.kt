@@ -1,5 +1,6 @@
 package com.hewking.develop.demo
 
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.RippleDrawable
@@ -41,6 +42,7 @@ class DemoListFragment : Fragment() {
         it.add(Item(index.incrementAndGet(), "ResDemoFragment", ResDemoFragment::class.java))
         it.add(Item(index.incrementAndGet(), "CoroutineDemoFragment", CoroutineDemoFragment::class.java))
         it.add(Item(index.incrementAndGet(), "Test Toolbar Demo", ToolbarFragment::class.java))
+        it.add(Item(index.incrementAndGet(), "Android 10 MediaStore Demo", CompatAndroidQActivity::class.java))
     }
 
     override fun onCreateView(
@@ -104,8 +106,14 @@ class DemoListFragment : Fragment() {
                     it.text = datas[position].name
                     holder.itemView.setOnClickListener {
                         Log.d("click","execute")
-                        val fragment = datas[position].clazz.newInstance()
-                        activity?.addOrShowFragment(R.id.frameLayout,fragment,datas[position].name)
+                        val clazz = datas[position].clazz
+                        if (Fragment::class.java.isAssignableFrom(clazz)) {
+                            val fragment = datas[position].clazz.newInstance()
+                            activity?.addOrShowFragment(R.id.frameLayout,fragment as Fragment,datas[position].name)
+                        } else {
+                            startActivity(Intent(requireContext(),clazz))
+                        }
+
                     }
                 }
             }
@@ -120,7 +128,7 @@ class DemoListFragment : Fragment() {
     data class Item(
         val id: Int,
         val name: String,
-        val clazz: Class<out Fragment>
+        val clazz: Class<*>
     )
 
 }
