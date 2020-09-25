@@ -31,18 +31,24 @@
 <!--  provider_paths 配置要点：
 1. name 需要唯一性 也就是不同的path 定义的name 不要一致，因为
 后面定义的会覆盖起前面定义的，也就是前面定义的name 会失效被后面的替换
-2.external-files-path 标签对应的是root:/Android/data/com.hewking.develop/files -->
+2.external-files-path 标签对应的是root:/Android/data/com.hewking.develop/files
+3. 最佳匹配原则，如果path 跟文件路径匹配度高则使用此匹配，匹配度低的即便配置在前面也不会生效-->
 
   <external-path
-    name="."
-    path="Android/data/com.hewking.develop/files/temp" />
+      name="."
+      path="Android/data/com.hewking.develop/files/temp" />
 
   <external-files-path
       name="."
-      path="DCIM/AndroidDeveloper"/>
+      path="DCIM/AndroidDeveloper" />
+
+  <external-files-path
+      name="movie"
+      path="Movies" />
 
   <external-files-path
       name="every"
-      path="."/>
+      path="." />
+
 
 </paths>

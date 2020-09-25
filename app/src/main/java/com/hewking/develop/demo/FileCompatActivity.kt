@@ -83,17 +83,27 @@ class FileCompatActivity : AppCompatActivity() {
 
         btnGetUriFromFile.setOnClickListener {
             val dir = File(getExternalFilesDir(Environment.DIRECTORY_DCIM),"AndroidDeveloper")
-            val file = File(dir,"image.png")
+            val file = File(dir, "image.png")
             val authority = "com.hewking.develop.fileprovider"
-            val uri = FileProvider.getUriForFile(this@FileCompatActivity,authority,file)
+            val uri = FileProvider.getUriForFile(this@FileCompatActivity, authority, file)
 
-            Logger.debug(TAG,"filePath:${file.path}",uri.toString())
+            Logger.debug(TAG, "filePath:${file.path}", uri.toString())
 
-            val file2 = File(cacheDir,"photo.png")
-            Logger.debug(TAG,"2 filePath:${file2.path}",FileProvider.getUriForFile(this@FileCompatActivity,authority,file2).toString())
+            val file2 = File(cacheDir, "photo.png")
+            Logger.debug(
+                TAG,
+                "2 filePath:${file2.path}",
+                FileProvider.getUriForFile(this@FileCompatActivity, authority, file2).toString()
+            )
 
-            val file3 = File(getExternalFilesDir(Environment.DIRECTORY_MOVIES),"photo.png")
-            Logger.debug(TAG,"2 filePath:${file2.path}",FileProvider.getUriForFile(this@FileCompatActivity,authority,file3).toString())
+            val file3 = File(getExternalFilesDir(Environment.DIRECTORY_MOVIES), "photo.png")
+            Logger.debug(
+                TAG,
+                "3 filePath:${file2.path}",
+                FileProvider.getUriForFile(this@FileCompatActivity, authority, file3).toString()
+            )
+
+
         }
 
     }
