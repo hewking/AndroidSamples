@@ -46,6 +46,14 @@ class ToolbarFragment : Fragment() {
                     startActivity(Intent(requireContext(),WebViewActivity::class.java))
                 }
             })
+
+            addView(Button(requireContext()).apply {
+                layoutParams = LinearLayout.LayoutParams(-2,-2)
+                text = "test activity immersive"
+                setOnClickListener {
+                    startActivity(Intent(requireContext(),ImmersiveDemoActivity::class.java))
+                }
+            })
         }
     }
 
