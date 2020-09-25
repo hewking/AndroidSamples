@@ -11,6 +11,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import com.hewking.develop.R
 import com.hewking.develop.util.Logger
 import kotlinx.android.synthetic.main.activity_file_compat.*
@@ -62,7 +63,7 @@ class FileCompatActivity : AppCompatActivity() {
             // 直接通过路径去存储是可以的，不应该有这样的代码出现
             var path = getExternalFilesDir(Environment.DIRECTORY_DCIM)
 //            if (Environment.isExternalStorageLegacy()) {
-                path = File("/storage/emulated/0")
+//                path = File("/storage/emulated/0")
 //            }
             val dir = File(path, "AndroidDeveloper")
             if (!dir.exists()) {
@@ -78,6 +79,21 @@ class FileCompatActivity : AppCompatActivity() {
 
         btnPickFile.setOnClickListener {
             pickFile()
+        }
+
+        btnGetUriFromFile.setOnClickListener {
+            val dir = File(getExternalFilesDir(Environment.DIRECTORY_DCIM),"AndroidDeveloper")
+            val file = File(dir,"image.png")
+            val authority = "com.hewking.develop.fileprovider"
+            val uri = FileProvider.getUriForFile(this@FileCompatActivity,authority,file)
+
+            Logger.debug(TAG,"filePath:${file.path}",uri.toString())
+
+            val file2 = File(cacheDir,"photo.png")
+            Logger.debug(TAG,"2 filePath:${file2.path}",FileProvider.getUriForFile(this@FileCompatActivity,authority,file2).toString())
+
+            val file3 = File(getExternalFilesDir(Environment.DIRECTORY_MOVIES),"photo.png")
+            Logger.debug(TAG,"2 filePath:${file2.path}",FileProvider.getUriForFile(this@FileCompatActivity,authority,file3).toString())
         }
 
     }
@@ -139,15 +155,6 @@ class FileCompatActivity : AppCompatActivity() {
             System.currentTimeMillis().toString() + ".txt"
         )
         startActivityForResult(intent, WRITE_REQUEST_CODE)
-    }
-
-    fun saveFile(){
-        val dir = File(Environment.getExternalStorageDirectory(),"AndroidDeveloper")
-        if (dir.exists()) {
-            dir.mkdir()
-        }
-
-        val file = File(dir,"")
     }
 
 
