@@ -141,6 +141,15 @@ class FileCompatActivity : AppCompatActivity() {
         startActivityForResult(intent, WRITE_REQUEST_CODE)
     }
 
+    fun saveFile(){
+        val dir = File(Environment.getExternalStorageDirectory(),"AndroidDeveloper")
+        if (dir.exists()) {
+            dir.mkdir()
+        }
+
+        val file = File(dir,"")
+    }
+
 
 
     companion object{
