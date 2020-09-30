@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.core.view.children
 import com.hewking.develop.R
-import com.hewking.utils.L
 import java.lang.IllegalArgumentException
 import kotlin.math.max
 import kotlin.math.min

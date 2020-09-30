@@ -41,4 +41,20 @@ class StatusBarManager(private val activity: Activity) {
             }
         }
     }
+
+    fun immersive(){
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            return
+        }
+        // 4.4 - 5.0
+        if (Build.VERSION.SDK_INT in Build.VERSION_CODES.KITKAT until Build.VERSION_CODES.LOLLIPOP) {
+            // sit1: 背景是一张图片的情况
+            activity.window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        } else if (Build.VERSION.SDK_INT in Build.VERSION_CODES.LOLLIPOP until Build.VERSION_CODES.M) {
+
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+        }
+    }
+
 }
