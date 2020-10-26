@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import com.hewking.develop.databinding.ActivityMainBinding
 import com.hewking.develop.demo.DemoListFragment
+import com.hewking.develop.floatingview.FloatingView
 import com.hewking.develop.service.CountDownService
 
 class MainActivity : AppCompatActivity() {
@@ -43,6 +44,16 @@ class MainActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
 //        unbindService(connection)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        FloatingView.get().attach(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        FloatingView.get().detach(this)
     }
 
     override fun onBackPressed() {
