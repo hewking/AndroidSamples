@@ -99,8 +99,22 @@ class FileCompatActivity : AppCompatActivity() {
             val file3 = File(getExternalFilesDir(Environment.DIRECTORY_MOVIES), "photo.png")
             Logger.debug(
                 TAG,
-                "3 filePath:${file2.path}",
+                "3 filePath:${file3.path}",
                 FileProvider.getUriForFile(this@FileCompatActivity, authority, file3).toString()
+            )
+
+            val file4 = File(getExternalFilesDir("every"), "test_every.png")
+            Logger.debug(
+                TAG,
+                "4 filePath:${file4.path}",
+                FileProvider.getUriForFile(this@FileCompatActivity, authority, file4).toString()
+            )
+
+            val file5 = File(getExternalFilesDir("files"), "test_files.png")
+            Logger.debug(
+                TAG,
+                "5 filePath:${file5.path}",
+                FileProvider.getUriForFile(this@FileCompatActivity, authority, file5).toString()
             )
 
 

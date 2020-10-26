@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.hewking.develop.R
+import com.hewking.develop.util.DeviceIdUtils
 import com.hewking.develop.util.Logger
 import com.hewking.develop.util.toast
 import kotlinx.android.synthetic.main.activity_compat_androidq.*
@@ -88,8 +89,10 @@ class CompatAndroidQActivity : AppCompatActivity() {
 
         btnGetIMEI.setOnClickListener {
             val androidId = getIMEI()
+            val info = DeviceIdUtils.systembuildInfo();
             toast("androidID:$androidId")
             Logger.debug("androidID", "test", "androidID:$androidId")
+            Logger.debug("androidID", "test", "systemInfo:$info")
         }
 
         testFileApi.setOnClickListener {

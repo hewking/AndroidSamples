@@ -1,4 +1,5 @@
 package com.hewking.develop.util;
+
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -22,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.lang.reflect.Method;
 import java.util.UUID;
 
 /**
@@ -29,7 +31,7 @@ import java.util.UUID;
  * @create: 2020/9/16
  * @description:
  */
-final class DeviceIdUtils {
+public class DeviceIdUtils {
     private static final String TAG = DeviceIdUtils.class.getSimpleName();
 
     private static final String TEMP_DIR = "system_config";
@@ -207,4 +209,39 @@ final class DeviceIdUtils {
             return null;
         }
     }
+
+    public static String systembuildInfo() {
+//        return android.os.Build.BRAND;
+        String phoneInfo = "Product: " + android.os.Build.PRODUCT;
+        phoneInfo += ", CPU_ABI: " + android.os.Build.CPU_ABI;
+        phoneInfo += ", TAGS: " + android.os.Build.TAGS;
+        phoneInfo += ", VERSION_CODES.BASE: " + android.os.Build.VERSION_CODES.BASE;
+        phoneInfo += ", MODEL: " + android.os.Build.MODEL;
+        phoneInfo += ", SDK: " + android.os.Build.VERSION.SDK;
+        phoneInfo += ", VERSION.RELEASE: " + android.os.Build.VERSION.RELEASE;
+        phoneInfo += ", DEVICE: " + android.os.Build.DEVICE;
+        phoneInfo += ", DISPLAY: " + android.os.Build.DISPLAY;
+        phoneInfo += ", BRAND: " + android.os.Build.BRAND;
+        phoneInfo += ", BOARD: " + android.os.Build.BOARD;
+        phoneInfo += ", FINGERPRINT: " + android.os.Build.FINGERPRINT;
+        phoneInfo += ", ID: " + android.os.Build.ID;
+        phoneInfo += ", MANUFACTURER: " + android.os.Build.MANUFACTURER;
+        phoneInfo += ", USER: " + android.os.Build.USER;
+        phoneInfo += ", DEVICE_NAME: " + getDeviceName();
+        return phoneInfo;
+    }
+
+    public static String getDeviceName() {
+        String deviceName = "";
+        try{
+            Class<?> cls = Class.forName("android.os.SystemProperties");
+            Object object = (Object) cls.newInstance();
+            Method getName = cls.getDeclaredMethod("get", String.class);
+            deviceName = (String) getName.invoke(object, "persist.sys.device_name");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return  deviceName;
+    }
+
 }
