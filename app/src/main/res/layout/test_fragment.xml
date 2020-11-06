@@ -31,6 +31,12 @@
             <include
                 android:id="@+id/list_item"
                 layout="@layout/demo_list_item"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我真的喜欢你"
+                android:ems="1"/>
         </LinearLayout>
 
 
