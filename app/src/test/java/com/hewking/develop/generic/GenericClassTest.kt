@@ -37,7 +37,7 @@ class GenericClassTest {
     @Test
     fun foo(){
         val clazz: Class<out Animal<out Any>> = Human::class.java
-        clazz.newInstance().eat(Water())
+//        clazz.newInstance().eat(Water())
     }
 
 }

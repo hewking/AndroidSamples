@@ -27,6 +27,18 @@ class IntTest {
 
     }
 
+    data class Rank(val rank : Int, val value: String)
+
+    @Test
+    fun test() {
+        val arr = arrayOf(Rank(1,"hei"), Rank(4,"ya"), Rank(3,"la"))
+
+        val res = arr.sortedBy { it.rank }
+
+        println(res)
+
+    }
+
 }
 
 public fun Int.zeroUntil(): IntRange {
