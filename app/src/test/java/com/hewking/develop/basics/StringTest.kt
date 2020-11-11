@@ -1,5 +1,6 @@
 package com.hewking.develop.basics
 
+import com.hewking.develop.util.UnitUtil
 import org.junit.Test
 
 /**
@@ -19,6 +20,12 @@ class StringTest {
         "1234".slice(3 until  4).also {
             println(it)
         }
+    }
+
+    @Test
+    fun foo(){
+        val res = UnitUtil.addThousandSeparator("--")
+        println(res)
     }
 
 }
