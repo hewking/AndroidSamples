@@ -11,7 +11,7 @@ import kotlin.coroutines.*
  * @Notice: This content is limited to the internal circulation of Hive Box, and it is prohibited to leak or used for other commercial purposes.
  */
 
-object Start {
+class Start {
 
 
     @Test
