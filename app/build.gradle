@@ -6,17 +6,17 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.didi.dokit'
 
 //apply plugin: 'myplugin'
-apply plugin: 'bee-plugin'
+//apply plugin: 'bee-plugin'
 
 //configBaseProject getProject()
 
 /* bee 配置项*/
-beeClassTableExt {
-    enable=true
-    enableLog=true
-    addModifyMap("com/trello/rxlifecycle3/components/support/RxFragment", "com/hibox/bee/sdk/probe/lifecycle/component/LifecycleFragmentRx")
-    addKeep("com/bumptech/glide/manager/SupportRequestManagerFragment")
-}
+//beeClassTableExt {
+//    enable=true
+//    enableLog=true
+//    addModifyMap("com/trello/rxlifecycle3/components/support/RxFragment", "com/hibox/bee/sdk/probe/lifecycle/component/LifecycleFragmentRx")
+//    addKeep("com/bumptech/glide/manager/SupportRequestManagerFragment")
+//}
 
 android {
     compileSdkVersion 29

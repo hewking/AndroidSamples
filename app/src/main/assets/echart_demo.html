@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>ECharts Demo</title>
+    <!-- 引入 echarts.js -->
+    <script src="echarts.min.js"></script>
+</head>
+
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 200px;height:150px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: 'ECharts 入门示例'
+            },
+            tooltip: {},
+            legend: {
+                data: ['销量']
+            },
+            xAxis: {
+                data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                smooth: true,
+                type: 'line',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+
+        var option2 = {
+            xAxis: {
+                show: false,
+                boundaryGap: false,
+                data: [
+                    10,
+                    20,
+                    15,
+                    10,
+                    15
+                ]
+            },
+            yAxis: {
+                show: false,
+                boundaryGap: false
+            },
+            grid: {
+                show: false,
+                top: 5,
+                bottom: 5,
+                left: 0,
+                right: 0
+            },
+            series: {
+                type: "line",
+                data: [
+                    10,
+                    20,
+                    15,
+                    10,
+                    15
+                ],
+                lineStyle: {
+                    color: "#6782F7",
+                    shadowColor: "rgba(24,144,255,0.5)",
+                    shadowBlur: 12,
+                    shadowOffsetX: 0,
+                    shadowOffsetY: 5
+                },
+                areaStyle: {
+                    color: {
+                        type: "linear",
+                        x: 0,
+                        y: 0,
+                        x2: 0,
+                        y2: 1,
+                        colorStops: [{
+                                offset: 0,
+                                color: "rgba(103,130,247,0.15)"
+                            },
+                            {
+                                offset: 1,
+                                color: "rgba(103,130,247,0)"
+                            }
+                        ]
+                    }
+                },
+                smooth: true,
+                symbol: "none"
+            },
+            tooltip: {
+                show: false
+            }
+        };
+
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+
+        function setSeries(values) {
+            var newOption = Object.assign({}, option2)
+
+            newOption.series.data = values;
+            // newOption.xAxis.data = values;
+            myChart.setOption(newOption);
+        }
+
+        function setSeriesForNative(payload){
+        console.log("setSeriesForNative",payload,payload.datas);
+            // var params = JSON.parse(payload);
+            var params = payload;
+            if(params.datas) {
+                setSeries(params.datas);
+            }
+        }
+
+        function changeSeries() {
+            console.log("changeSeries");
+
+            var series = [];
+
+            for (var i = 0; i < 6; i ++ ) {
+                series.push(getRandomInt(100));
+            }
+
+            console.log("series: ", series);
+
+            setSeries(series);
+
+        }
+
+
+        // 使用刚指定的配置项和数据显示图表。
+
+    </script>
+
+    <button type="button" onclick="changeSeries()">设置数据</button>
+</body>
+
+</html>

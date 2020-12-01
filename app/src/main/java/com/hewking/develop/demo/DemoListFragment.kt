@@ -44,6 +44,7 @@ class DemoListFragment : Fragment() {
         it.add(Item(index.incrementAndGet(), "Test Toolbar Demo", ToolbarFragment::class.java))
         it.add(Item(index.incrementAndGet(), "Android 10 MediaStore Demo", CompatAndroidQActivity::class.java))
         it.add(Item(index.incrementAndGet(), "Drawable Demo", DrawableDemofragment::class.java))
+        it.add(Item(index.incrementAndGet(), "WebViewFragment Demo", WebViewFragment::class.java))
     }
 
     override fun onCreateView(

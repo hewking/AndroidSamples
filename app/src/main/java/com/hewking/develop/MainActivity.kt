@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
+
         supportFragmentManager.beginTransaction()
             .add(R.id.frameLayout, DemoListFragment(), "DemoListFragment")
             .commit()
