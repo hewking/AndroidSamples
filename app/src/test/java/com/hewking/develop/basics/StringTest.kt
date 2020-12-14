@@ -1,5 +1,6 @@
 package com.hewking.develop.basics
 
+import android.text.TextUtils
 import com.hewking.develop.util.UnitUtil
 import org.junit.Test
 
@@ -12,6 +13,13 @@ class StringTest {
 
     @Test
     fun test(){
+        var text: String? = null
+
+        println(text.isNullOrEmpty())
+        // result: null
+
+
+        println(text?.isNotEmpty() != true)
 
     }
 
@@ -27,5 +35,7 @@ class StringTest {
         val res = UnitUtil.addThousandSeparator("--")
         println(res)
     }
+
+
 
 }
