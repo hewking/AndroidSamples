@@ -21,7 +21,7 @@ interface ApiService {
         }
     }
 
-    @GET("https://gank.io/api/v2/categories/GanHuo")
+    @GET("https://gank.io/api/v2/data/category/Girl/type/Girl/page/1/count/10")
     fun getWeather():Call<ResponseBody>
 
     @GET("https://gank.io/api/v2/categories/GanHuo")
