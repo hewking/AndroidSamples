@@ -109,6 +109,18 @@ class GsonTest {
 
     }
 
+    inline fun <reified T> parse(json: String): List<T> {
+        val type = TypeToken.getParameterized(List::class.java, T::class.java).type
+        val gson = Gson()
+        return gson.fromJson(json, type)
+    }
+
+    inline fun <reified T> parse2(json: String): List<T> {
+        val type = object : TypeToken<List<T>>(){}.type
+        return gson.fromJson(json, type)
+    }
+
+
     data class Person(val name: String = "heihei") {
         var age = 13
         var set = 1
