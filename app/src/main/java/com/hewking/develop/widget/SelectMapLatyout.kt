@@ -49,7 +49,7 @@ class SelectMapLatyout @JvmOverloads constructor(
 
     fun addItem(item: String, index: Int) {
         val child = LayoutInflater.from(context).inflate(R.layout.item_left_select, this, false)
-//        child.tv_title_name.text = item
+        child.tv_title_name.text = item
         child.id = Random.nextInt()
         if (index == 0) {
             (child.layoutParams as LinearLayout.LayoutParams).topMargin = 0

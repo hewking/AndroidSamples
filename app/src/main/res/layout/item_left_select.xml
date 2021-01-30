@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RadioButton xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tv_title_name"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:text="全国"
+    android:button="@null"
     android:background="@drawable/gridding_bigger"
+    android:textColor="#FF8C96A9"
     android:layout_marginBottom="-8dp"
-    android:layout_marginTop="-8dp" android:textSize="12sp"
-    android:orientation="vertical"
-    tools:showIn="@layout/layout_grid_left_select">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="全国"
-        android:button="@null"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:textColor="#FF8C96A9"
-        android:ems="1"
-        android:textSize="12sp"/>
-
-</LinearLayout>
+    android:layout_marginTop="-8dp"
+    android:ems="1"
+    android:textSize="12sp"
+    tools:showIn="@layout/layout_grid_left_select" />

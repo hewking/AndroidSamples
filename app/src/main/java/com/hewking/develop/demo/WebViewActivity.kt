@@ -31,6 +31,9 @@ class WebViewActivity : BaseActivity(){
                 Log.d("WebViewActivity","scrollX:$scrollX scrollY$scrollY oldScrollX:$oldScrollX oldScrollY$oldScrollY")
             }
         }
+
+        WebView.setWebContentsDebuggingEnabled(true)
+
         webview.webViewClient = webviewClient
         webview.webChromeClient = webChromeClient
 

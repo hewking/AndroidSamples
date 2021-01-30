@@ -9,12 +9,12 @@ class DemoApplication : Application(){
 
     override fun onCreate() {
         super.onCreate()
+//        DoraemonKit.install(this)
     }
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         MultiDex.install(base)
-        DoraemonKit.install(this)
     }
 
 }

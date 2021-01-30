@@ -16,4 +16,13 @@
     <color name="standard_tab_background_color_night">#31333D</color>
 
     <color name="black_overlay">#66000000</color>
+
+    <color name="attendance_divider_color">#F4F5F7</color>
+    <color name="default_shadow_color">#2aff0000</color>
+    <color name="default_shadow_bg_color">#fff</color>
+    <color name="attendance_shadow_color">#4292a780</color>
+    <color name="attendance_shadow_color1">#80b4bcad</color>
+    <color name="attendance_shadow_color2">#33b6bcd9</color>
+    <color name="color_attendance_green_a2">#A2B9A6</color>
+
 </resources>

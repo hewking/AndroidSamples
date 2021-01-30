@@ -25,5 +25,4 @@ class B : A {
 fun test (){
     B().bar(name="")
 
-
 }
