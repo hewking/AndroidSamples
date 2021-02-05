@@ -53,6 +53,22 @@ android {
         jvmTarget = "1.8"
     }
 
+    testOptions {
+        unitTests {
+            //让单元测试允许使用资源文件
+            includeAndroidResources = true
+            all{
+                //加上这个防止 jdk 高版本编译时 报 java.lang.VerifyError: Expecting a stackmap frame at branch target X
+                //Exception Details
+                jvmArgs = jvmArgs << "-noverify"
+            }
+        }
+    }
+
+    defaultConfig {
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
 }
 
 def multidex_version = "2.0.1"
@@ -150,6 +166,12 @@ dependencies {
     // optional - Test helpers for LiveData
     testImplementation "androidx.arch.core:core-testing:$arch_version"
     testImplementation 'junit:junit:4.13'
+    testImplementation 'io.mockk:mockk:1.9.2'
+    //robolectric
+    testImplementation "org.robolectric:robolectric:4.3.1"
+    testImplementation "com.android.support.test:monitor:1.0.2"
+    //协程单元测试库
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:x.x"
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
