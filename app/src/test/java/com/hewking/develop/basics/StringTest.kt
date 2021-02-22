@@ -3,6 +3,9 @@ package com.hewking.develop.basics
 import android.text.TextUtils
 import com.hewking.develop.util.UnitUtil
 import org.junit.Test
+import java.net.URI
+import java.net.URL
+import java.util.*
 
 /**
  * @author: jianhao
@@ -36,6 +39,17 @@ class StringTest {
         println(res)
     }
 
+    @Test
+    fun testDomain(){
+        val uri = URL("http://www.baidu.com");
+        println(uri.host)
+    }
+
+    @Test
+    fun testUUID(){
+        val uuid = UUID.randomUUID()
+        println(uuid)
+    }
 
 
 }

@@ -1,4 +1,4 @@
-package com.hewking.develop.demo
+package com.hewking.develop.unittest.rebolectric
 
 import com.hewking.develop.unittest.MyApp
 import org.junit.After
