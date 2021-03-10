@@ -1,6 +1,7 @@
 package com.hewking.develop.unittest
 
 import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 
 /**
  * @Description: 为单元测试提供Activity 环境
@@ -10,5 +11,5 @@ import android.app.Activity
  * @Notice: This content is limited to the internal circulation of Hive Box, 
 and it is prohibited to leak or used for other commercial purposes.
  */
-class UnitTestActivity: Activity() {
+class UnitTestActivity: AppCompatActivity() {
 }
