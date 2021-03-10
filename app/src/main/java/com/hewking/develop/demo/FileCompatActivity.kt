@@ -6,10 +6,12 @@ import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.hewking.develop.R
@@ -28,6 +30,7 @@ class FileCompatActivity : AppCompatActivity() {
         MediaStore.Images.Media._ID
     )
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_file_compat)
@@ -44,10 +47,10 @@ class FileCompatActivity : AppCompatActivity() {
             val externalStoragePublicDirectoryPath =
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
             Logger.debug(
-                "getFilePath", "fileDirPath:$fileDirPath",
-                "cacheDirPath:$cacheDirPath",
-                "externalCachePath:$externalCachePath",
-                "externalFilePath:$externaFilePath"
+                "getFilePath", "fileDirPath: $fileDirPath",
+                "cacheDirPath: $cacheDirPath",
+                "externalCachePath: $externalCachePath",
+                "externalFilePath: $externaFilePath"
             )
 
             Logger.debug(
@@ -75,6 +78,9 @@ class FileCompatActivity : AppCompatActivity() {
             val fos = FileOutputStream(file)
             bitmap.compress(compressFormat, 100, fos)
             fos.closeQuietly()
+
+            iv_image.setImageBitmap(BitmapFactory.decodeFile(file.absolutePath))
+
         }
 
         btnPickFile.setOnClickListener {

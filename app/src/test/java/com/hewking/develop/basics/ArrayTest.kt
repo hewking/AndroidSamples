@@ -21,4 +21,12 @@ and it is prohibited to leak or used for other commercial purposes.
         }
     }
 
+    @Test
+    fun `test array set element null`(){
+        val arr = Array<String?>(5) {null}
+        println(arr.toList().size)
+
+    }
+
+
 }
