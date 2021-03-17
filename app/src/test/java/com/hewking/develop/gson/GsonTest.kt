@@ -109,6 +109,13 @@ class GsonTest {
 
     }
 
+    @Test
+    fun qur(){
+        val json = "{\"configCode\":\"accountsSecurity\",\"configOrder\":1,\"id\":19,\"parentDesc\":\"账户与安全\",\"subLink\":\"fcredirect://generalset_safe_account\",\"tagName\":\"\"}"
+        val result = gson.fromJson<Any>(json,Any::class.java)
+        println("result $result")
+    }
+
     inline fun <reified T> parse(json: String): List<T> {
         val type = TypeToken.getParameterized(List::class.java, T::class.java).type
         val gson = Gson()
