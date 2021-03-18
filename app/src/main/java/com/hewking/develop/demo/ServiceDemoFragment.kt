@@ -29,7 +29,7 @@ class ServiceDemoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val layout = LinearLayout(context!!)
+        val layout = LinearLayout(requireContext())
         layout.setBackgroundColor(Color.WHITE)
         val tv = Button(context).also {
             it.text = "开启MusicManager AIDL 服务"

@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
@@ -36,12 +37,12 @@ android {
         }
     }
 
-    viewBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding true
     }
 
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding true
     }
 
     compileOptions {
@@ -69,6 +70,16 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    //greendao配置
+    greendao {
+        //版本号，升级时可配置
+        //更新版本号请在 GreenDaoUpgradeHelper 类中对升级的表分版本号进行处理，否则会闪退
+        schemaVersion 1
+        daoPackage 'com.hewking.develop.db.table'
+        //设置DaoMaster、DaoSession、Dao目录,请注意，这里路径用/不要用.
+        targetGenDir 'src/main/java'
+    }
+
 }
 
 def multidex_version = "2.0.1"
@@ -78,6 +89,7 @@ dependencies {
     def arch_version = "2.1.0"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.4.21")
     implementation 'androidx.appcompat:appcompat:1.2.0'
@@ -147,6 +159,9 @@ dependencies {
 
     // coil
     implementation("io.coil-kt:coil:0.11.0")
+
+    //ORM数据库
+    implementation 'org.greenrobot:greendao:3.3.0'
 
     // immserive status bar
     implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'

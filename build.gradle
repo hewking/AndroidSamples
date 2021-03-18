@@ -17,6 +17,8 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.didichuxing.doraemonkit:doraemonkit-plugin:3.2.0'
         classpath 'com.hewking.plugin:myplugin:0.0.1'
+        //GreenDao3
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
 //        classpath 'com.fcbox.android:bee-plugin:2.0.1-SNAPSHOT'
 
         // NOTE: Do not place your application dependencies here; they belong

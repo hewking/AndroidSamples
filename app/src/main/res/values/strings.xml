@@ -7,4 +7,6 @@
     <string name="title_activity_immersive_demo">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="text_send">发送</string>
+    <string name="text_input_please">请输入...</string>
 </resources>

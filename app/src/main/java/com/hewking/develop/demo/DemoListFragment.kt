@@ -34,17 +34,18 @@ import java.util.concurrent.atomic.AtomicInteger
 class DemoListFragment : Fragment() {
 
     private val datas = mutableListOf<Item>().also {
-        val index = AtomicInteger(1)
-        it.add(Item(index.incrementAndGet(), "Service Demo", ServiceDemoFragment::class.java))
-        it.add(Item(index.incrementAndGet(), "Test Demo", TestDemoFragment::class.java))
-        it.add(Item(index.incrementAndGet(), "TestListFragment", TestListFragment::class.java))
-        it.add(Item(index.incrementAndGet(), "TestDialogFragment", TestDialogFragment::class.java))
-        it.add(Item(index.incrementAndGet(), "ResDemoFragment", ResDemoFragment::class.java))
-        it.add(Item(index.incrementAndGet(), "CoroutineDemoFragment", CoroutineDemoFragment::class.java))
-        it.add(Item(index.incrementAndGet(), "Test Toolbar Demo", ToolbarFragment::class.java))
-        it.add(Item(index.incrementAndGet(), "Android 10 MediaStore Demo", CompatAndroidQActivity::class.java))
-        it.add(Item(index.incrementAndGet(), "Drawable Demo", DrawableDemofragment::class.java))
-        it.add(Item(index.incrementAndGet(), "WebViewFragment Demo", WebViewFragment::class.java))
+        var index = 0
+        it.add(Item(index++, "Service Demo", ServiceDemoFragment::class.java))
+        it.add(Item(index++, "Test Demo", TestDemoFragment::class.java))
+        it.add(Item(index++, "TestListFragment", TestListFragment::class.java))
+        it.add(Item(index++, "TestDialogFragment", TestDialogFragment::class.java))
+        it.add(Item(index++, "ResDemoFragment", ResDemoFragment::class.java))
+        it.add(Item(index++, "CoroutineDemoFragment", CoroutineDemoFragment::class.java))
+        it.add(Item(index++, "Test Toolbar Demo", ToolbarFragment::class.java))
+        it.add(Item(index++, "Android 10 MediaStore Demo", CompatAndroidQActivity::class.java))
+        it.add(Item(index++, "Drawable Demo", DrawableDemofragment::class.java))
+        it.add(Item(index++, "WebViewFragment Demo", WebViewFragment::class.java))
+        it.add(Item(index++, "聊天", MessageFragment::class.java))
     }
 
     override fun onCreateView(
@@ -60,7 +61,12 @@ class DemoListFragment : Fragment() {
         )
         RecyclerView(requireContext()).also {
             it.layoutManager = LinearLayoutManager(context)
-            it.addItemDecoration(DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL))
+            it.addItemDecoration(
+                DividerItemDecoration(
+                    requireContext(),
+                    DividerItemDecoration.VERTICAL
+                )
+            )
             it.adapter = buildAdpater()
             parent.addView(it, FrameLayout.LayoutParams(-1, -1))
         }
@@ -77,19 +83,20 @@ class DemoListFragment : Fragment() {
                 viewType: Int
             ): RecyclerView.ViewHolder {
 
-                val itemView = MaskLinearLayout(context!!,null).also { it ->
-                    it.layoutParams = (ViewGroup.LayoutParams(-1,-2))
+                val itemView = MaskLinearLayout(context!!, null).also { it ->
+                    it.layoutParams = (ViewGroup.LayoutParams(-1, -2))
                     // TODO("添加ripple drawable metail 涟漪效果")
 //                    it.background = RippleDrawable(ColorStateList.valueOf("#20000000".toColorInt()),
 //                    StateListDrawable().apply {
 //                        addState(intArrayOf(android.R.attr.state_pressed,android.R.attr.state_selected)
 //                        ,ColorDrawable(ContextCompat.getColor(requireContext(),R.color.colorPrimary)))
 //                    },null)
-                    it.background = requireContext().getDrawable(android.R.drawable.list_selector_background)
+                    it.background =
+                        requireContext().getDrawable(android.R.drawable.list_selector_background)
                     it.addView(TextView(context).also {
                         it.id = tvID
                         it.setPadding(dp2px(16f).toInt())
-                    },LinearLayout.LayoutParams(-1,-2).also {
+                    }, LinearLayout.LayoutParams(-1, -2).also {
                         it.gravity = Gravity.CENTER
                     })
                 }
@@ -107,13 +114,17 @@ class DemoListFragment : Fragment() {
                 tvName.also {
                     it.text = datas[position].name
                     holder.itemView.setOnClickListener {
-                        Log.d("click","execute")
+                        Log.d("click", "execute")
                         val clazz = datas[position].clazz
                         if (Fragment::class.java.isAssignableFrom(clazz)) {
                             val fragment = datas[position].clazz.newInstance()
-                            activity?.addOrShowFragment(R.id.frameLayout,fragment as Fragment,datas[position].name)
+                            activity?.addOrShowFragment(
+                                R.id.frameLayout,
+                                fragment as Fragment,
+                                datas[position].name
+                            )
                         } else {
-                            startActivity(Intent(requireContext(),clazz))
+                            startActivity(Intent(requireContext(), clazz))
                         }
 
                     }
