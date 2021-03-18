@@ -15,13 +15,17 @@ public class MessageTable {
   @Property(nameInDb = "message")
   public String message = "";
 
-  @Generated(hash = 1803278331)
-  public MessageTable(Long id, String message) {
-      this.id = id;
-      this.message = message;
-  }
+  @Property(nameInDb = "time")
+  public long time;
 
-  @Generated(hash = 1805713138)
+  @Generated(hash = 429502521)
+public MessageTable(Long id, String message, long time) {
+    this.id = id;
+    this.message = message;
+    this.time = time;
+}
+
+@Generated(hash = 1805713138)
   public MessageTable() {
   }
 
@@ -40,6 +44,14 @@ public class MessageTable {
   public void setMessage(String message) {
       this.message = message;
   }
+
+public long getTime() {
+    return this.time;
+}
+
+public void setTime(long time) {
+    this.time = time;
+}
 
 
 }

@@ -19,6 +19,8 @@ apply plugin: 'com.didi.dokit'
 //    addKeep("com/bumptech/glide/manager/SupportRequestManagerFragment")
 //}
 
+def schema_version = 5
+
 android {
     compileSdkVersion 29
 //    buildToolsVersion "29.0.3"
@@ -29,6 +31,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "int", "schema_version", "$schema_version"
     }
     buildTypes {
         release {
@@ -74,7 +78,7 @@ android {
     greendao {
         //版本号，升级时可配置
         //更新版本号请在 GreenDaoUpgradeHelper 类中对升级的表分版本号进行处理，否则会闪退
-        schemaVersion 1
+        schemaVersion schema_version
         daoPackage 'com.hewking.develop.db.table'
         //设置DaoMaster、DaoSession、Dao目录,请注意，这里路径用/不要用.
         targetGenDir 'src/main/java'
@@ -138,6 +142,8 @@ dependencies {
 
     // uikit
 //    implementation 'com.hewking.github:uikit:0.0.1'
+
+    implementation 'com.tencent:mmkv-static:1.2.7'
 
     // guava
     implementation("com.google.guava:guava:30.1-jre")

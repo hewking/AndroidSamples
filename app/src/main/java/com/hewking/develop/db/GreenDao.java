@@ -2,6 +2,7 @@ package com.hewking.develop.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.hewking.develop.db.table.DaoSession;
 
@@ -63,13 +64,13 @@ public class GreenDao {
     daoSession = daoMaster.newSession();
 
     int newVersion = daoMaster.getSchemaVersion();
-//    int oldVersion = MMKVUtil
-//        .getValue(Global.applicationContext, GreenDaoUpgradeHelper.SCHEMA_VERSION, 0);
-//    LogUtil.e("newVersion ===> " + newVersion + " , oldVersion ===> " + oldVersion);
+    int oldVersion = PreferenceTable.INSTANCE.getSchemaVersion();
 
-//    if (oldVersion < newVersion) {
-//      helper.onUpgrade(db, oldVersion, newVersion);
-//    }
+    Log.e("GreenDao","newVersion ===> " + newVersion + " , oldVersion ===> " + oldVersion);
+
+    if (oldVersion < newVersion) {
+      helper.onUpgrade(db, oldVersion, newVersion);
+    }
   }
 
   public DaoSession getDaoSession() {

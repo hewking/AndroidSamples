@@ -14,12 +14,24 @@ class DemoApplication : Application(){
 //        DoraemonKit.install(this)
         ProcessLifecycleOwner.get().lifecycle.addObserver(ApplicationLifecycleObserver())
 
+        instance = this
+
         GreenDao.get().init(this)
     }
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         MultiDex.install(base)
+    }
+
+    companion object {
+
+        lateinit var instance: Application
+
+        fun get(): Application{
+            return instance
+        }
+
     }
 
 }
