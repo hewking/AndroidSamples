@@ -17,6 +17,7 @@ import android.provider.Settings
 import android.telephony.TelephonyManager
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -25,6 +26,7 @@ import com.hewking.develop.R
 import com.hewking.develop.util.DeviceIdUtils
 import com.hewking.develop.util.Logger
 import com.hewking.develop.util.toast
+import com.hewking.develop.vm.MainViewModel
 import kotlinx.android.synthetic.main.activity_compat_androidq.*
 import java.io.BufferedInputStream
 import java.io.BufferedOutputStream
@@ -45,6 +47,8 @@ import kotlin.concurrent.thread
 const val PICK_FILE = 1
 
 class CompatAndroidQActivity : AppCompatActivity() {
+
+    private val viewModel by viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,6 +86,7 @@ class CompatAndroidQActivity : AppCompatActivity() {
             val fileUrl = "http://guolin.tech/android.txt"
             val fileName = "android.txt"
             downloadFile(fileUrl, fileName)
+
         }
         pickFile.setOnClickListener {
             pickFileAndCopyUriToExternalFilesDir()
@@ -97,8 +102,19 @@ class CompatAndroidQActivity : AppCompatActivity() {
 
         testFileApi.setOnClickListener {
             startActivity(Intent(this@CompatAndroidQActivity, FileCompatActivity::class.java))
+            finish()
+            viewModel.doLongTask()
+
         }
 
+        setupObservers()
+
+    }
+
+    private fun setupObservers() {
+        viewModel.triggerLiveData.observe(this, {
+            Log.d("CompatAndroidQActivity", "trigger")
+        })
     }
 
     override fun onRequestPermissionsResult(

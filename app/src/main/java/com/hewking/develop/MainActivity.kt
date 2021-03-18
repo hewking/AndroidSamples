@@ -9,10 +9,12 @@ import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
 import android.view.LayoutInflater
+import androidx.activity.viewModels
 import com.hewking.develop.databinding.ActivityMainBinding
 import com.hewking.develop.demo.DemoListFragment
 import com.hewking.develop.floatingview.FloatingView
 import com.hewking.develop.service.CountDownService
+import com.hewking.develop.vm.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,6 +38,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
+
+        setupObservers()
 
         supportFragmentManager.beginTransaction()
             .add(R.id.frameLayout, DemoListFragment(), "DemoListFragment")
@@ -64,4 +68,9 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
+
+    private fun setupObservers() {
+
+    }
+
 }
