@@ -30,6 +30,7 @@ class AsyncTest {
         return 20
     }
 
+    @Test
     fun main() = runBlocking {
         val time = measureTimeMillis {
             val t1 = doSomethingUsefulOne()
@@ -114,13 +115,13 @@ class AsyncTest {
 
             /*measureTimeMillis返回给定的block代码的执行时间*/
             val time = measureTimeMillis {
-                val sum = withContext(Dispatchers.IO) {
+//                val sum = withContext(Dispatchers.IO) {
                     val one = async { one() }
                     val two = async { two() }
                     val res = one.await() + two.await()
-                    res
-                }
-                println("两个方法返回值的和：${sum}")
+//                    res
+//                }
+//                println("两个方法返回值的和：${sum}")
             }
             println("执行耗时：${time}")
         }
