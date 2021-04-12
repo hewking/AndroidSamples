@@ -4,7 +4,7 @@ ext {
             targetSdk : 29,
             buildTools: "29.0.3"
     ]
-
+    compose_version = '1.0.0-alpha04'
 }
 
 def configBaseProject(Project project) {
