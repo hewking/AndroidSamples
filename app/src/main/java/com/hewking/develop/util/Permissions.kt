@@ -1,5 +1,7 @@
 import android.content.pm.PackageManager
 import android.os.Build
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -160,25 +162,25 @@ fun AppCompatActivity.checkSelfPermissionState(
 /**
  * Instantiate and manage it in composition like this
  */
-@ExperimentalCoroutinesApi
-@Composable
-fun checkSelfPermissionState(
-    activity: AppCompatActivity,
-    permission: String
-): PermissionState {
-    val key = currentComposer.currentCompoundKeyHash.toString()
-    val call = remember(activity, permission) {
-        PermissionResultCall(key, activity, permission)
-    }
-    // drive initialCheck and unregister from composition lifecycle
-    onCommit(call) {
-        call.initialCheck()
-        onDispose {
-            call.unregister()
-        }
-    }
-    return call.checkSelfPermission()
-}
+//@ExperimentalCoroutinesApi
+//@Composable
+//fun checkSelfPermissionState(
+//    activity: AppCompatActivity,
+//    permission: String
+//): PermissionState {
+//    val key = currentComposer.currentCompoundKeyHash.toString()
+//    val call = remember(activity, permission) {
+//        PermissionResultCall(key, activity, permission)
+//    }
+//    // drive initialCheck and unregister from composition lifecycle
+//    onCommit(call) {
+//        call.initialCheck()
+//        onDispose {
+//            call.unregister()
+//        }
+//    }
+//    return call.checkSelfPermission()
+//}
 
 /**
  * A quick wrapper to expose fused location as Flow.
