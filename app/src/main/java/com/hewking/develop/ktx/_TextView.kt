@@ -16,7 +16,7 @@ import android.widget.TextView
 fun TextView.addOnTextChangedListener(
     config: TextWatcherConfiguration.() -> Unit
 ) {
-    val listener = TextWatcherConfiguration().apply { config() }
+    val listener = TextWatcherConfiguration().apply(config)
     addTextChangedListener(listener)
 }
 

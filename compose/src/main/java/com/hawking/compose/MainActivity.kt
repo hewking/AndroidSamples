@@ -174,6 +174,7 @@ fun AppCompatActivity.checkSelfPermissionState(
 /**
  * Instantiate and manage it in composition like this
  */
+@ExperimentalComposeApi
 @ExperimentalCoroutinesApi
 @Composable
 fun checkSelfPermissionState(
