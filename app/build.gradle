@@ -88,6 +88,8 @@ android {
 
 def multidex_version = "2.0.1"
 
+repositories{flatDir{dirs 'libs'}}
+
 dependencies {
     def lifecycle_version = "2.2.0"
     def arch_version = "2.1.0"
@@ -100,6 +102,9 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation("com.squareup.okhttp3:okhttp:4.7.2")
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
+    implementation(name: 'koscrew-screw-1.0.0-SNAPSHOT', ext: 'aar')
+
     // glide
     implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha05'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
@@ -147,6 +152,8 @@ dependencies {
 
     // uikit
 //    implementation 'com.hewking.github:uikit:0.0.1'
+
+    implementation 'com.fcbox.android:koscrew-span:1.0.0-SNAPSHOT'
 
     implementation 'com.tencent:mmkv-static:1.2.7'
 
