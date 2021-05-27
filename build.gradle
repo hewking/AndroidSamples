@@ -7,9 +7,10 @@ buildscript {
     repositories {
         google()
         jcenter()
-//        maven {
-//            url uri("http://artifactory.fcbox.com:8081/artifactory/libs-snapshot")
-//        }
+        maven {
+            url uri("http://artifactory.fcbox.com:8081/artifactory/libs-snapshot")
+        }
+        maven { url 'https://repo1.maven.org/maven2/' }
         mavenCentral()
         mavenLocal()
     }
@@ -20,7 +21,7 @@ buildscript {
         classpath 'com.hewking.plugin:myplugin:0.0.1'
         //GreenDao3
         classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
-//        classpath 'com.fcbox.android:bee-plugin:2.0.1-SNAPSHOT'
+        classpath 'com.fcbox.android:bee-plugin:2.0.1-SNAPSHOT'
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detekt_version" // 在这里添加 Detekt 依赖
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -65,6 +66,7 @@ allprojects {
         maven { url 'http://artifactory.fcbox.com:8081/artifactory/libs' }
         google()
         jcenter()
+        maven { url 'https://repo1.maven.org/maven2/' }
     }
 }
 

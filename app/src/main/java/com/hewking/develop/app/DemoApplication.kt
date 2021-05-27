@@ -6,6 +6,7 @@ import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.multidex.MultiDex
 import com.didichuxing.doraemonkit.DoraemonKit
 import com.hewking.develop.db.GreenDao
+import com.umeng.commonsdk.UMConfigure
 
 class DemoApplication : Application(){
 
@@ -17,6 +18,9 @@ class DemoApplication : Application(){
         instance = this
 
         GreenDao.get().init(this)
+
+        UMConfigure.init(this, "60af5b916c421a3d97cf5988", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "");
+        UMConfigure.setLogEnabled(true)
     }
 
     override fun attachBaseContext(base: Context?) {

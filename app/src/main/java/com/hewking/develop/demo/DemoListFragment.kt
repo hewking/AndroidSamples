@@ -45,6 +45,7 @@ class DemoListFragment : Fragment() {
         it.add(Item(index++, "Android 10 MediaStore Demo", CompatAndroidQActivity::class.java))
         it.add(Item(index++, "Drawable Demo", DrawableDemofragment::class.java))
         it.add(Item(index++, "WebViewFragment Demo", WebViewFragment::class.java))
+        it.add(Item(index++, "UAPMFragment Demo", UAPMFragment::class.java))
         it.add(Item(index++, "聊天", MessageFragment::class.java))
     }
 
