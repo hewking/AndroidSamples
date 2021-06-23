@@ -3,6 +3,12 @@ package com.hewking.develop.demo.wanandroid.entity
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+data class BaseResponse<T>(
+    val data: WanHomeResponse,
+    val errorCode: Int,
+    val errorMsg: String
+)
+
 @Keep
 data class WanHomeResponse(
     val curPage: Int?,

@@ -5,12 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hewking.develop.R
+import com.hewking.develop.databinding.ItemMessageBinding
 import com.hewking.develop.demo.wanandroid.entity.Article
 
 class ArticleViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
-    fun bind(item: Article?) {
+    private val _binding = ItemMessageBinding.bind(itemView)
 
+    fun bind(item: Article?) {
+        _binding.tvUsername.text = item?.author
+        _binding.tvMessage.text = item?.desc
     }
 
     companion object {

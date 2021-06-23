@@ -7,6 +7,6 @@ import com.hewking.develop.demo.wanandroid.repository.WanAndroidRepository
 
 class ArticleViewModel(repo: WanAndroidRepository): ViewModel() {
 
-    val flow = repo.postsOfArticle(30).cachedIn(viewModelScope)
+    val flow = repo.postsOfArticle(20).cachedIn(viewModelScope)
 
 }
