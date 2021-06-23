@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.ColorUtils
 import androidx.fragment.app.Fragment
-import com.fcbox.screw.view.shapeDrawable
 import com.hewking.develop.databinding.TestFragmentBinding
 import com.hewking.develop.demo.dialog.BottomDialogDemo
 import com.hewking.develop.demo.dialog.BottomItemsDialog
@@ -28,9 +27,6 @@ class TestDemoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        shapeDrawable {  }
-
 
         binding.btnChange.setOnClickListener {
 

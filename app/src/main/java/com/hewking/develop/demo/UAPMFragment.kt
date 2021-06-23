@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
-import com.fcbox.screw.view.click
 import com.umeng.umcrash.UMCrash
 
 
@@ -46,9 +45,9 @@ class UAPMFragment: Fragment(){
                 }
                 text = "自定义异常"
                 isAllCaps = true
-                click {
-                    testCustomException()
-                }
+//                click {
+//                    testCustomException()
+//                }
             })
         }
     }

@@ -103,7 +103,7 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.7.2")
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 
-    implementation(name: 'koscrew-screw-1.0.0-SNAPSHOT', ext: 'aar')
+//    implementation(name: 'koscrew-screw-1.0.0-SNAPSHOT', ext: 'aar')
 
     // glide
     implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha05'
@@ -150,10 +150,12 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:1.2.5"
     implementation "androidx.activity:activity-ktx:1.1.0"
 
+    def paging_version = "3.0.0"
+    implementation "androidx.paging:paging-runtime:$paging_version"
     // uikit
 //    implementation 'com.hewking.github:uikit:0.0.1'
 
-    implementation 'com.fcbox.android:koscrew-span:1.0.0-SNAPSHOT'
+//    implementation 'com.fcbox.android:koscrew-span:1.0.0-SNAPSHOT'
 
     implementation 'com.tencent:mmkv-static:1.2.7'
 

@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hewking.develop.R
+import com.hewking.develop.demo.wanandroid.ui.ArticleListFragment
 import com.hewking.develop.ktx.addOrReplaceFragment
 import com.hewking.develop.ktx.addOrShowFragment
 import com.hewking.develop.ktx.dp2px
@@ -47,6 +48,7 @@ class DemoListFragment : Fragment() {
         it.add(Item(index++, "WebViewFragment Demo", WebViewFragment::class.java))
         it.add(Item(index++, "UAPMFragment Demo", UAPMFragment::class.java))
         it.add(Item(index++, "聊天", MessageFragment::class.java))
+        it.add(Item(index++, "玩Android 首页，Paging3 Demo", ArticleListFragment::class.java))
     }
 
     override fun onCreateView(
