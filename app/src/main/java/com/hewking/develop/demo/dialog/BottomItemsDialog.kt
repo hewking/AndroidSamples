@@ -79,8 +79,6 @@ class BottomItemsDialog : DialogFragment() {
         }
     }
 
-
-
     class ItemViewHolder(private val binding: DemoListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data:String) {

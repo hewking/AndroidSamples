@@ -67,6 +67,12 @@ class ArticleListFragment: Fragment() {
             }
         }
 
+        lifecycleScope.launchWhenCreated {
+            adapter.loadStateFlow.collectLatest { loadStates ->
+                binding.refreshLayout.isRefreshing = loadStates.mediator?.refresh is LoadState.Loading
+            }
+        }
+
         adapter.addLoadStateListener {
             when (it.refresh) {
                 is LoadState.NotLoading -> {
