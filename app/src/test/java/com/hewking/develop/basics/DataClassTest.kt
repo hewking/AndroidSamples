@@ -41,4 +41,14 @@ class DataClassTest {
 //        }
     }
 
+    @Test
+    fun `test in list`(){
+        val list = kotlin.collections.listOf<String>("3","2","1")
+        kotlin.io.println("3" !in list)
+        kotlin.io.println("4" !in list)
+
+        println(list.contains("3"))
+        println(!list.contains("3"))
+    }
+
 }

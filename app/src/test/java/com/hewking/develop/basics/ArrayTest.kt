@@ -10,7 +10,7 @@ import org.junit.Test
  * @Notice: This content is limited to the internal circulation of Hive Box, 
 and it is prohibited to leak or used for other commercial purposes.
  */
- class ArrayTest {
+class ArrayTest {
 
     @Test
     fun foo(){
@@ -27,6 +27,5 @@ and it is prohibited to leak or used for other commercial purposes.
         println(arr.toList().size)
 
     }
-
 
 }

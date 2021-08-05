@@ -15,6 +15,10 @@ class ArticleViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     fun bind(item: Article?) {
         _binding.tvUsername.text = item?.author
         _binding.tvMessage.text = item?.desc
+
+        _binding.root.setOnClickListener {
+
+        }
     }
 
     companion object {

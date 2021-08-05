@@ -4,7 +4,7 @@ import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
 data class BaseResponse<T>(
-    val data: WanHomeResponse,
+    val data: T,
     val errorCode: Int,
     val errorMsg: String
 )
@@ -62,4 +62,15 @@ data class Article(
 data class Tag(
     val name: String?,
     val url: String?
+)
+
+@Keep
+data class FriendArticle(
+    val category: String,
+    val icon: String,
+    val id: Int,
+    val link: String,
+    val name: String,
+    val order: Int,
+    val visible: Int
 )

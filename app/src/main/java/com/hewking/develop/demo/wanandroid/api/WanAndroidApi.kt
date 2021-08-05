@@ -2,6 +2,7 @@ package com.hewking.develop.demo.wanandroid.api
 
 import android.util.Log
 import com.hewking.develop.demo.wanandroid.entity.BaseResponse
+import com.hewking.develop.demo.wanandroid.entity.FriendArticle
 import com.hewking.develop.demo.wanandroid.entity.WanHomeResponse
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
@@ -17,6 +18,9 @@ interface WanAndroidApi {
     suspend fun getArticle(
         @Path("page") page: Int,
     ): BaseResponse<WanHomeResponse>
+
+    @GET("https://www.wanandroid.com/friend/json")
+    suspend fun getFriendArticle(): BaseResponse<List<FriendArticle>>
 
 
     companion object {
