@@ -24,7 +24,8 @@
             android:name=".demo.ImmersiveDemoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_immersive_demo"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:theme="@style/FullscreenTheme"
+            android:resizeableActivity="true"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,6 +43,8 @@
             android:name=".demo.CompatAndroidQActivity"
             android:label="CompatAndroidQActivity" />
         <activity android:name=".demo.BrowseAlbumActivity" />
+        <activity android:name=".demo.SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <service
             android:name=".service.CountDownService"

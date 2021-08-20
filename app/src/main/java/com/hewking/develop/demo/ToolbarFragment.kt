@@ -54,6 +54,14 @@ class ToolbarFragment : Fragment() {
                     startActivity(Intent(requireContext(),ImmersiveDemoActivity::class.java))
                 }
             })
+
+            addView(Button(requireContext()).apply {
+                layoutParams = LinearLayout.LayoutParams(-2,-2)
+                text = "test splashn fullscreen"
+                setOnClickListener {
+                    startActivity(Intent(requireContext(),SplashActivity::class.java))
+                }
+            })
         }
     }
 

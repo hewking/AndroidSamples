@@ -16,15 +16,16 @@ import android.provider.MediaStore
 import android.provider.Settings
 import android.telephony.TelephonyManager
 import android.util.Log
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.hewking.develop.R
 import com.hewking.develop.util.DeviceIdUtils
 import com.hewking.develop.util.Logger
+import com.hewking.develop.util.NotchUtil
 import com.hewking.develop.util.toast
 import com.hewking.develop.vm.MainViewModel
 import kotlinx.android.synthetic.main.activity_compat_androidq.*
@@ -53,6 +54,12 @@ class CompatAndroidQActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_compat_androidq)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
+        initNotchState()
+
         val permissionsToRequire = ArrayList<String>()
         if (ContextCompat.checkSelfPermission(
                 this,
@@ -288,6 +295,40 @@ class CompatAndroidQActivity : AppCompatActivity() {
             Settings.Secure.getString(this.contentResolver, Settings.Secure.ANDROID_ID)
 
         return androidId
+    }
+
+    val XIAOMI = "XIAOMI"
+    val HUAWEI = "HUAWEI"
+    val OPPO = "OPPO"
+    val VIVO = "VIVO"
+
+    private fun initNotchState() {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O_MR1) {
+            val window = window
+            val lp = window.attributes
+            lp.layoutInDisplayCutoutMode =
+                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+            window.attributes = lp
+            window.attributes = lp
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
+            && Build.VERSION.SDK_INT <= Build.VERSION_CODES.O_MR1
+        ) {
+            val brand: String = android.os.Build.BRAND
+            when (brand) {
+                XIAOMI -> if (NotchUtil.hasNotchAtXiaoMi()) {
+                    NotchUtil.setNotchStateAtXiaoMi(this)
+                }
+                HUAWEI -> if (NotchUtil.hasNotchAtHuaWei(this)) {
+                }
+                OPPO -> if (NotchUtil.hasNotchAtOPPO(this)) {
+                }
+                VIVO -> if (NotchUtil.hasNotchAtVivo(this)) {
+                }
+                else -> {
+                }
+            }
+        } else {
+        }
     }
 
 }

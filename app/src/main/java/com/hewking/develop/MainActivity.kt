@@ -53,12 +53,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        FloatingView.get().attach(this)
+//        FloatingView.get().attach(this)
     }
 
     override fun onPause() {
         super.onPause()
-        FloatingView.get().detach(this)
+//        FloatingView.get().detach(this)
     }
 
     override fun onBackPressed() {
