@@ -104,7 +104,8 @@ class ArticleListFragment : Fragment() {
 
         binding.list.adapter = adapter.withLoadStateFooter(FooterAdapter { adapter.retry() })
 
-        model.result.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+        model.result
+//            .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
             .onEach {
                 Log.d("collectLatest", " it: ${it?.get(0)?.toString()}")
             }
