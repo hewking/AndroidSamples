@@ -43,6 +43,7 @@ class DemoListFragment : Fragment() {
         it.add(Item(index++, "ResDemoFragment", ResDemoFragment::class.java))
         it.add(Item(index++, "CoroutineDemoFragment", CoroutineDemoFragment::class.java))
         it.add(Item(index++, "Test Toolbar Demo", ToolbarFragment::class.java))
+        it.add(Item(index++, "Switch Custom Demo", SwitchDemoFragment::class.java))
         it.add(Item(index++, "Android 10 MediaStore Demo", CompatAndroidQActivity::class.java))
         it.add(Item(index++, "Drawable Demo", DrawableDemofragment::class.java))
         it.add(Item(index++, "WebViewFragment Demo", WebViewFragment::class.java))
