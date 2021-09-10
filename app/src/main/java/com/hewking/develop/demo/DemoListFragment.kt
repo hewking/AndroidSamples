@@ -49,6 +49,7 @@ class DemoListFragment : Fragment() {
         it.add(Item(index++, "WebViewFragment Demo", WebViewFragment::class.java))
         it.add(Item(index++, "UAPMFragment Demo", UAPMFragment::class.java))
         it.add(Item(index++, "聊天", MessageFragment::class.java))
+        it.add(Item(index++, "Jacoco 测试", JacocoFragment::class.java))
         it.add(Item(index++, "玩Android 首页，Paging3 Demo", ArticleListFragment::class.java))
     }
 

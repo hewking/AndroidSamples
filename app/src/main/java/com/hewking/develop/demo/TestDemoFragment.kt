@@ -10,6 +10,7 @@ import com.hewking.develop.databinding.TestFragmentBinding
 import com.hewking.develop.demo.dialog.BottomDialogDemo
 import com.hewking.develop.demo.dialog.BottomItemsDialog
 import com.hewking.develop.demo.dialog.CustomDialog
+import com.tencent.bugly.crashreport.CrashReport
 import kotlinx.android.synthetic.main.test_fragment.*
 
 class TestDemoFragment : Fragment() {
@@ -36,6 +37,8 @@ class TestDemoFragment : Fragment() {
 
         binding.btnChange2.setOnClickListener {
             ll_mask.showMask = true
+
+            CrashReport.testJavaCrash()
         }
 
         binding.listItem.run {

@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.hewking.develop.R
+import com.hewking.develop.databinding.ActivityCompatAndroidqBinding
 import com.hewking.develop.util.DeviceIdUtils
 import com.hewking.develop.util.Logger
 import com.hewking.develop.util.NotchUtil
@@ -51,9 +52,14 @@ class CompatAndroidQActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<MainViewModel>()
 
+    private lateinit var binding: ActivityCompatAndroidqBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_compat_androidq)
+
+        binding = ActivityCompatAndroidqBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
@@ -78,28 +84,28 @@ class CompatAndroidQActivity : AppCompatActivity() {
         if (permissionsToRequire.isNotEmpty()) {
             ActivityCompat.requestPermissions(this, permissionsToRequire.toTypedArray(), 0)
         }
-        browseAlbum.setOnClickListener {
+        binding.browseAlbum.setOnClickListener {
             val intent = Intent(this, BrowseAlbumActivity::class.java)
             startActivity(intent)
         }
-        addImageToAlbum.setOnClickListener {
+        binding.addImageToAlbum.setOnClickListener {
             val bitmap = BitmapFactory.decodeResource(resources, R.drawable.image)
             val displayName = "${System.currentTimeMillis()}.jpg"
             val mimeType = "image/jpeg"
             val compressFormat = Bitmap.CompressFormat.JPEG
             addBitmapToAlbum(bitmap, displayName, mimeType, compressFormat)
         }
-        downloadFile.setOnClickListener {
+        binding.downloadFile.setOnClickListener {
             val fileUrl = "http://guolin.tech/android.txt"
             val fileName = "android.txt"
             downloadFile(fileUrl, fileName)
 
         }
-        pickFile.setOnClickListener {
+        binding.pickFile.setOnClickListener {
             pickFileAndCopyUriToExternalFilesDir()
         }
 
-        btnGetIMEI.setOnClickListener {
+        binding.btnGetIMEI.setOnClickListener {
             val androidId = getIMEI()
             val info = DeviceIdUtils.systembuildInfo();
             toast("androidID:$androidId")
@@ -107,7 +113,7 @@ class CompatAndroidQActivity : AppCompatActivity() {
             Logger.debug("androidID", "test", "systemInfo:$info")
         }
 
-        testFileApi.setOnClickListener {
+        binding.testFileApi.setOnClickListener {
             startActivity(Intent(this@CompatAndroidQActivity, FileCompatActivity::class.java))
             finish()
             viewModel.doLongTask()

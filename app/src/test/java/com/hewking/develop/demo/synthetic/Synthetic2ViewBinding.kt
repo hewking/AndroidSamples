@@ -6,6 +6,7 @@ import kotlinx.coroutines.withContext
 import org.junit.Test
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import javax.xml.parsers.DocumentBuilderFactory
 
 /**
  *@Description:
@@ -15,19 +16,14 @@ import java.io.FileOutputStream
  *@Notice: This content is limited to the internal circulation of
  *  Hive Box, and it is prohibited to leak or used for other commercial purposes.
  */
-object Synthetic2ViewBinding {
+class Synthetic2ViewBinding {
 
-    @JvmStatic
-    fun main(args: Array<String>) {
-        test()
-    }
-
+    @Test
     fun test(){
         val path = "E:\\private_project\\AndroidDeveloper\\app\\src\\main\\res\\layout\\activity_main.xml"
         val parserHandler = XmlPullParserHandler()
         val fis = FileInputStream(path)
         val ids = parserHandler.parse(fis)
-
         println(ids)
 
     }

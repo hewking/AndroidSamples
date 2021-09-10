@@ -51,5 +51,12 @@ class StringTest {
         println(uuid)
     }
 
+    @Test
+    fun `test subSequence`(){
+//        val str = "jdkslaskdsksajdjskasjksa_0"
+        val str = "jdkslaskdsksajdjskasjk"
+        println(str.subSequence(0, 24))
+    }
+
 
 }
