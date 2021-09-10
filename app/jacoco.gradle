@@ -24,6 +24,11 @@ def coverageSourceDirs = [
         '../app/src/main/java'
 ]
 
+def coverageClassDirs = [
+        './build/intermediates/javac/debug/classes',
+        './build/tmp/kotlin-classes/debug'
+]
+
 //Jacoco 版本
 jacoco {
     toolVersion = "0.8.2"
@@ -39,22 +44,44 @@ task jacocoTestReport(type: JacocoReport) {
         xml.enabled = true
         html.enabled = true
     }
-    classDirectories.from = fileTree(
-            dir: './build/intermediates/javac/debug/classes',
-            excludes: ['**/R*.class',
-                       '**/*$InjectAdapter.class',
-                       '**/*$ModuleAdapter.class',
-                       '**/*$ViewInjector*.class'
-            ])
+//    classDirectories.from = fileTree(
+//            dir: './build/intermediates/javac/debug/classes',
+//            excludes: ['**/R*.class',
+//                       '**/*$InjectAdapter.class',
+//                       '**/*$ModuleAdapter.class',
+//                       '**/*$ViewInjector*.class'
+//            ])
+
+    classDirectories.from = files(files(coverageClassDirs).files.collect {
+        println("$rootDir" + it)
+        fileTree(
+                dir: "$rootDir" + it,
+                excludes: ['**/R*.class',
+                           '**/*$InjectAdapter.class',
+                           '**/*$ModuleAdapter.class',
+                           '**/*$ViewInjector*.class'
+                ])
+    })
+
     sourceDirectories.from = files(coverageSourceDirs)
     executionData.from = files("$buildDir/outputs/code-coverage/coverage.ec")
 
     doFirst {
-        new File("$buildDir/intermediates/javac/debug/classes/").eachFileRecurse { file ->
-            if (file.name.contains('$$')) {
-                file.renameTo(file.path.replace('$$', '$'))
+//        new File("$buildDir/intermediates/javac/debug/classes/").eachFileRecurse { file ->
+//            if (file.name.contains('$$')) {
+//                file.renameTo(file.path.replace('$$', '$'))
+//            }
+//        }
+
+        coverageClassDirs.each {path ->
+            println("$rootDir" + path)
+            new File("$rootDir" + path).eachFileRecurse { file ->
+                if (file.name.contains('$$')) {
+                    file.renameTo(file.path.replace('$$', '$'))
+                }
             }
         }
+
     }
 }
 
