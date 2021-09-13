@@ -43,45 +43,35 @@ task jacocoTestReport(type: JacocoReport) {
     reports {
         xml.enabled = true
         html.enabled = true
-    }
-//    classDirectories.from = fileTree(
-//            dir: './build/intermediates/javac/debug/classes',
-//            excludes: ['**/R*.class',
-//                       '**/*$InjectAdapter.class',
-//                       '**/*$ModuleAdapter.class',
-//                       '**/*$ViewInjector*.class'
-//            ])
 
-    classDirectories.from = files(files(coverageClassDirs).files.collect {
-        println("$rootDir" + it)
+    }
+
+    classDirectories.from = coverageClassDirs.collect {
+        println("path : $rootDir" + it)
         fileTree(
-                dir: "$rootDir" + it,
+                // dir 是需要相对路径， 通过collect 函数得到fileTree 的数组
+                dir: it,
                 excludes: ['**/R*.class',
                            '**/*$InjectAdapter.class',
                            '**/*$ModuleAdapter.class',
                            '**/*$ViewInjector*.class'
                 ])
-    })
+    }
 
     sourceDirectories.from = files(coverageSourceDirs)
     executionData.from = files("$buildDir/outputs/code-coverage/coverage.ec")
 
     doFirst {
-//        new File("$buildDir/intermediates/javac/debug/classes/").eachFileRecurse { file ->
-//            if (file.name.contains('$$')) {
-//                file.renameTo(file.path.replace('$$', '$'))
-//            }
-//        }
 
-        coverageClassDirs.each {path ->
-            println("$rootDir" + path)
-            new File("$rootDir" + path).eachFileRecurse { file ->
+        files(coverageClassDirs).files.each {pFile ->
+            println("path2: $rootDir" + path)
+            pFile.eachFileRecurse { file ->
                 if (file.name.contains('$$')) {
                     file.renameTo(file.path.replace('$$', '$'))
                 }
             }
-        }
 
+        }
     }
 }
 
