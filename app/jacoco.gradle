@@ -1,32 +1,31 @@
 apply plugin: 'jacoco'
+
 /**
  * 手动测试代码覆盖率
  * Useage:
  *
  * 1、可以直接编译运行或者安装应用
  * 2、./gradlew jacocoInit 初始化
- * 3、开始测试，测试结束后点击生成报告将ec文件pull到本地项目 PROJECT_PATH 路径中，具体命令可查看日志Loge<Pull>
- * PROJECT_PATH '项目路径/app/build/' + 'outputs/code-coverage/'
+ * 3、开始测试，测试结束后点击生成报告将ec文件pull到本地项目 PROJECT_PATH 路径中，app中ec 文件目录可查看JacocoHelper 中的
+ * log JacocoHelper_generateEcFile
  * 4、./gradlew jacocoTestReport 然后到 /app/build/reports里查看相关报告
  *
  */
 
-android {
-    buildTypes {
-        debug {
-            testCoverageEnabled = true
-        }
-    }
-}
+apply from: rootProject.file('jacoco.gradle')
 
 //Java源码路径
 def coverageSourceDirs = [
-        '../app/src/main/java'
+        '../app/src/main/java',
+        '../client/src/main/java',
 ]
 
 def coverageClassDirs = [
         './build/intermediates/javac/debug/classes',
-        './build/tmp/kotlin-classes/debug'
+        '../webview/build/intermediates/javac/debug/classes',
+        // kotlin classes
+        './build/tmp/kotlin-classes/debug',
+        '../webview/build/tmp/kotlin-classes/debug',
 ]
 
 //Jacoco 版本
@@ -43,7 +42,6 @@ task jacocoTestReport(type: JacocoReport) {
     reports {
         xml.enabled = true
         html.enabled = true
-
     }
 
     classDirectories.from = coverageClassDirs.collect {
@@ -64,13 +62,12 @@ task jacocoTestReport(type: JacocoReport) {
     doFirst {
 
         files(coverageClassDirs).files.each {pFile ->
-            println("path2: $rootDir" + path)
+            println("path2: $rootDir" + pFile)
             pFile.eachFileRecurse { file ->
                 if (file.name.contains('$$')) {
                     file.renameTo(file.path.replace('$$', '$'))
                 }
             }
-
         }
     }
 }

@@ -10,6 +10,7 @@ import com.hewking.develop.databinding.TestFragmentBinding
 import com.hewking.develop.demo.dialog.BottomDialogDemo
 import com.hewking.develop.demo.dialog.BottomItemsDialog
 import com.hewking.develop.demo.dialog.CustomDialog
+import com.hewking.webview.LogUtil
 import com.tencent.bugly.crashreport.CrashReport
 import kotlinx.android.synthetic.main.test_fragment.*
 
@@ -33,6 +34,9 @@ class TestDemoFragment : Fragment() {
 
             val color = ColorUtils.setAlphaComponent(iv_text.currentTextColor,0x80)
             iv_text.setTextColor(color)
+
+            LogUtil.e("怎么回事啊","又不回消息了")
+
         }
 
         binding.btnChange2.setOnClickListener {

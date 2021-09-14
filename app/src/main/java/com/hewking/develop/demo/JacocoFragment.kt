@@ -9,6 +9,7 @@ import com.hewking.develop.R
 import com.hewking.develop.databinding.FragmentJacocoBinding
 import com.hewking.develop.test.JacocoHelper
 import com.hewking.develop.util.toast
+import com.hewking.webview.LogUtil
 
 /**
  *@Description:
@@ -39,6 +40,7 @@ class JacocoFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val listener = View.OnClickListener {
+            LogUtil.e("onViewCreated", "test webview module jacoco 通过")
             when(it.id) {
                 R.id.btn1 -> toast(requireContext(), "测试1")
                 R.id.btn2 -> toast(requireContext(), "测试2")

@@ -100,6 +100,7 @@ def multidex_version = "2.0.1"
 repositories{flatDir{dirs 'libs'}}
 
 dependencies {
+    implementation project(path: ':webview')
     def lifecycle_version = "2.4.0-alpha02"
     def arch_version = "2.1.0"
 

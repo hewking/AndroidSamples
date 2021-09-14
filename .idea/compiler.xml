@@ -2,10 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.8">
-      <module name="AndroidDeveloper.client" target="1.8" />
       <module name="AndroidDeveloper.compose" target="1.8" />
       <module name="AndroidDeveloper.nativeapp" target="1.8" />
-      <module name="AndroidDeveloper.webview" target="1.8" />
       <module name="myplugin" target="1.7" />
     </bytecodeTargetLevel>
   </component>
