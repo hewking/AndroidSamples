@@ -2,15 +2,15 @@
 
 buildscript {
     apply from: "./config.gradle"
-    ext.kotlin_version = '1.4.32'
+    ext.kotlin_version = '1.6.10'
     ext.detekt_version = '1.15.0'
     repositories {
         google()
         jcenter()
         maven { url 'https://jitpack.io' } //jacoco
-        maven {
-            url uri("http://artifactory.fcbox.com:8081/artifactory/libs-snapshot")
-        }
+//        maven {
+//            url uri("http://artifactory.fcbox.com:8081/artifactory/libs-snapshot")
+//        }
         maven { url 'https://repo1.maven.org/maven2/' }
         mavenCentral()
         mavenLocal()
@@ -19,11 +19,11 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:4.0.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.didichuxing.doraemonkit:doraemonkit-plugin:3.2.0'
+//        classpath 'io.github.didi.dokit:dokitx-plugin:3.5.0'
         classpath 'com.hewking.plugin:myplugin:0.0.1'
         //GreenDao3
         classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
-        classpath 'com.fcbox.android:bee-plugin:2.0.1-SNAPSHOT'
+//        classpath 'com.fcbox.android:bee-plugin:2.0.1-SNAPSHOT'
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detekt_version" // 在这里添加 Detekt 依赖
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -65,7 +65,8 @@ subprojects {
 
 allprojects {
     repositories {
-        maven { url 'http://artifactory.fcbox.com:8081/artifactory/libs' }
+//        maven { url 'http://artifactory.fcbox.com:8081/artifactory/libs' }
+        mavenCentral()
         google()
         jcenter()
         maven { url 'https://jitpack.io' } //jacoco

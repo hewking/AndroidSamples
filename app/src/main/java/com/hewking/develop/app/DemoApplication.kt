@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.multidex.MultiDex
-import com.didichuxing.doraemonkit.DoraemonKit
 import com.hewking.develop.db.GreenDao
 import com.tencent.bugly.crashreport.CrashReport
 import com.umeng.commonsdk.UMConfigure
